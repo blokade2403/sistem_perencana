@@ -7,8 +7,8 @@
         <script>
           document.write(new Date().getFullYear());
         </script>
-         <span class="text-danger"></span> by
-        <a href="" target="_blank" class="footer-link fw-medium">Deni Muhamad Syahrul</a>
+         <span class="text-danger"></span> 
+        <a href="" target="_blank" class="footer-link fw-medium">Sistem Perencanaan</a>
       </div>
     </div>
   </div>

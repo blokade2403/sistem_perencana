@@ -146,33 +146,25 @@ class ValidasiRkbuPersediaanRka extends Controller
         ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $tahunAnggaran       = Session::get('tahun_anggaran');
@@ -273,11 +265,6 @@ class ValidasiRkbuPersediaanRka extends Controller
         }
 
         // dd($total_anggaran_sebelumnya, $perubahan_anggaran, ($total_anggaran_barjas_admin + $perubahan_anggaran));
-
-        // Validasi anggaran
-        if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
-            return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
-        }
 
         // Validasi input
         $validatedData = $request->validate([
@@ -425,7 +412,7 @@ class ValidasiRkbuPersediaanRka extends Controller
             'created_at'                  => now(),
         ];
 
-        if ($faseTahun === 'Penetapan') {
+        if (!in_array($faseTahun, ['Perencanaan', 'Perubahan'])) {
             RkbuHistory::create([
                 'id_rkbu'                   => $validasiRkbuBarjasKsp->id_rkbu,
                 'id_jenis_kategori_rkbu'    => '9cdfd364-2946-4ea1-bec2-e1130e8d9f2c',
@@ -435,6 +422,11 @@ class ValidasiRkbuPersediaanRka extends Controller
                 'keterangan_status'         => $request->input('keterangan_status'),
                 'upload_file_5'             => $namaFile6 ?? null,
             ]);
+
+            // Validasi anggaran
+            if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
+                return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
+            }
         }
 
         if (isset($upload_file_1)) {

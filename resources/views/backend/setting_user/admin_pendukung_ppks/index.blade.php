@@ -28,7 +28,7 @@
                                             <div class="btn-toolbar demo-inline-spacing" role="toolbar" aria-label="Toolbar with button groups">
                                                 <div class="btn-group" role="group" aria-label="First group">
                                                     <a href="{{route('admin_pendukungs.create')}}" class="btn btn-outline-secondary btn-primary">
-                                                        <i class="mdi mdi-account-check-outline me-1">Add</i>
+                                                        <i class="mdi mdi-account-check-outline me-1">Tambah Data</i>
                                                     </a>
                                                     <button type="button" class="btn btn-outline-secondary">
                                                         <i class="tf-icons mdi mdi-calendar-blank-outline"></i>
@@ -38,11 +38,6 @@
                                                     </button>
                                                     <button type="button" class="btn btn-outline-secondary">
                                                         <i class="tf-icons mdi mdi-chat-processing-outline"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group" role="group" aria-label="Third group">
-                                                    <button type="button" class="btn btn-outline-secondary btn-success">
-                                                        <i class="tf-icons mdi mdi-download">Download Report</i>
                                                     </button>
                                                 </div>
                                             </div>

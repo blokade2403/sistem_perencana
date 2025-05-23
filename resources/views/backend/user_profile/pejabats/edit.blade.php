@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="card mb-4">
                         <!-- Current Plan -->
-                        <h5 class="card-header">Pejabat Edit</h5>
+                        <h5 class="card-header">Edit Data Pejabat</h5>
                         <div class="card-body pt-1">
                             <div class="row">
                                 <div class="col-md-6">
@@ -75,8 +75,8 @@
                                     </div>
                                 </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                    <a href="/pejabats" class="btn btn-outline-secondary">Back</a>
+                                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                    <a href="{{route('pejabats.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

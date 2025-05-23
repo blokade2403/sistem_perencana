@@ -16,10 +16,10 @@
                                 <div class="flex-grow-1 mt-3 mt-sm-5">
                                     <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                                         <div class="user-profile-info">
-                                            <h4>Nama Lengkap</h4>
+                                            <h4> {{session('nama_lengkap')}}</h4>
                                             <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                                                 <li class="list-inline-item">
-                                                    <i class="mdi mdi-map-marker-outline me-1 mdi-20px"></i><span class="fw-semibold">Nama Unit</span>
+                                                    <i class="mdi mdi-account-convert me-1 mdi-20px"></i><span class="badge rounded-pill bg-label-danger"> {{session('nama_unit')}}</span>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <i class="mdi mdi-calendar-blank-outline me-1 mdi-20px"></i><span class="fw-semibold">{{date(('l, d-m-Y  H:i:s'))}} </span>
@@ -28,7 +28,7 @@
                                             <div class="btn-toolbar demo-inline-spacing" role="toolbar" aria-label="Toolbar with button groups">
                                                 <div class="btn-group" role="group" aria-label="First group">
                                                     <a href="{{route('pptks.create')}}" class="btn btn-outline-secondary btn-primary">
-                                                        <i class="mdi mdi-account-check-outline me-1">Add</i>
+                                                        <i class="mdi mdi-account-check-outline me-1">Tambah Data</i>
                                                     </a>
                                                     <button type="button" class="btn btn-outline-secondary">
                                                         <i class="tf-icons mdi mdi-calendar-blank-outline"></i>
@@ -38,11 +38,6 @@
                                                     </button>
                                                     <button type="button" class="btn btn-outline-secondary">
                                                         <i class="tf-icons mdi mdi-chat-processing-outline"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group" role="group" aria-label="Third group">
-                                                    <button type="button" class="btn btn-outline-secondary btn-success">
-                                                        <i class="tf-icons mdi mdi-download">Download Report</i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -71,10 +66,10 @@
                             </thead>
                             <tbody>
                                 @if($pptks->isEmpty())
-            <div class="alert alert-danger text-center">
-                Tidak ada data yang tersedia.
-            </div>
-        @else
+                                    <div class="alert alert-danger text-center">
+                                        Tidak ada data yang tersedia.
+                                    </div>
+                                @else
                                 <tr>
                                     @php
                                         $no = 1;

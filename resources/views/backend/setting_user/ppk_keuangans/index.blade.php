@@ -28,7 +28,7 @@
                                             <div class="btn-toolbar demo-inline-spacing" role="toolbar" aria-label="Toolbar with button groups">
                                                 <div class="btn-group" role="group" aria-label="First group">
                                                     <a href="{{route('ppk_keuangans.create')}}" class="btn btn-outline-secondary btn-primary">
-                                                        <i class="mdi mdi-account-check-outline me-1">Add</i>
+                                                        <i class="mdi mdi-account-check-outline me-1">Tambah Data</i>
                                                     </a>
                                                     <button type="button" class="btn btn-outline-secondary">
                                                         <i class="tf-icons mdi mdi-calendar-blank-outline"></i>
@@ -38,11 +38,6 @@
                                                     </button>
                                                     <button type="button" class="btn btn-outline-secondary">
                                                         <i class="tf-icons mdi mdi-chat-processing-outline"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="btn-group" role="group" aria-label="Third group">
-                                                    <button type="button" class="btn btn-outline-secondary btn-success">
-                                                        <i class="tf-icons mdi mdi-download">Download Report</i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -70,10 +65,10 @@
                             </thead>
                             <tbody>
                                 @if($ppk_keuangans->isEmpty())
-            <div class="alert alert-danger text-center">
-                Tidak ada data yang tersedia.
-            </div>
-        @else
+                                    <div class="alert alert-danger text-center">
+                                        Tidak ada data yang tersedia.
+                                    </div>
+                                @else
                                 <tr>
                                     @php
                                         $no = 1;
@@ -106,10 +101,10 @@
                             </tbody>
                             <tfoot>
                                 <th>No</th>
-                                    <th>Nama PPK</th>
-                                    <th>NIP</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                <th>Nama PPK</th>
+                                <th>NIP</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tfoot>
                         </table>
                     </div>
@@ -117,7 +112,5 @@
                 </div>
                 </div>
             </div>
-        <!--/ Header -->
-    <!--/ Header -->
 </div>
 @endsection

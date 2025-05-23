@@ -9,12 +9,12 @@
                 <div class="card-body">
                     <div class="card mb-4">
                         <!-- Current Plan -->
-                        <h5 class="card-header"> Create PPK Keuangan</h5>
+                        <h5 class="card-header"> Edit Data User PPK Keuangan</h5>
                         <div class="card-body pt-1">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div id="creditCardForm" class="row g-4">
-                                        <div class="col-12 col-md-7">
+                                        <div class="col-12 col-md-5">
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"> <i class="mdi mdi-account me-2"></i></span>
                                                 <div class="form-floating form-floating-outline">
@@ -23,7 +23,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-5">
+                                        <div class="col-12 col-md-4">
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"> <i class="mdi mdi-account me-2"></i></span>
                                                 <div class="form-floating form-floating-outline">
@@ -32,7 +32,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-8 mb-3">
+                                        <div class="col-12 col-md-3 mb-3">
                                             <div class="input-group input-group-merge">
                                                 <div class="form-floating form-floating-outline">
                                                     <select class="select2 form-select form-select-lg" data-allow-clear="true" name="status">
@@ -46,26 +46,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <img src="{{asset('assets/img/illustrations/verification-img.png')}}" alt="verification-img" width="100" height="475" class="img-fluid" data-app-light-img="illustrations/verification-img.png" data-app-dark-img="illustrations/verification-img.png" />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <div class="alert alert-warning mb-4 alert-dismissible" role="alert">
-                                                    <h6 class="alert-heading mb-1 d-flex align-items-end">
-                                                        <i class="mdi mdi-alert-outline mdi-20px me-2"></i>
-                                                        <span>We need your attention!</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                    <a href="{{route('ppk_keuangans.index')}}" class="btn btn-outline-secondary">Back</a>
+                                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                    <a href="{{route('ppk_keuangans.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

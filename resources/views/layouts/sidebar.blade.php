@@ -23,7 +23,7 @@
                 <path xmlns="http://www.w3.org/2000/svg" id="path3" d="M212.253 167.839 C 212.422 168.518,214.973 176.856,221.278 197.333 C 224.165 206.710,226.720 215.024,226.957 215.810 C 227.194 216.595,227.834 218.588,228.379 220.238 L 229.370 223.238 251.304 223.238 L 273.238 223.238 272.524 222.603 C 272.132 222.253,271.875 221.903,271.953 221.825 C 272.031 221.747,272.010 221.708,271.905 221.740 C 271.721 221.795,271.441 221.551,268.761 218.992 C 268.080 218.342,267.050 217.381,266.473 216.857 C 265.896 216.333,264.440 214.997,263.236 213.887 C 262.032 212.777,260.486 211.363,259.799 210.744 C 257.992 209.116,247.732 199.745,247.619 199.619 C 247.567 199.561,245.595 197.761,243.238 195.619 C 240.881 193.477,238.524 191.326,238.000 190.838 C 237.476 190.350,234.001 187.177,230.278 183.785 C 226.554 180.394,221.110 175.433,218.181 172.762 C 211.743 166.892,212.089 167.179,212.253 167.839 " stroke="none" fill="#515151" fill-rule="evenodd" />
                 <path xmlns="http://www.w3.org/2000/svg" id="path4" d="M269.212 219.476 C 270.005 220.261,270.391 220.470,269.725 219.754 C 269.364 219.365,269.003 219.048,268.924 219.048 C 268.844 219.048,268.974 219.240,269.212 219.476 M271.238 221.240 C 271.238 221.321,271.679 221.803,272.219 222.312 L 273.200 223.238 251.266 223.238 C 234.682 223.238,229.333 223.184,229.333 223.016 C 229.333 222.894,229.285 222.842,229.226 222.901 C 229.072 223.055,239.649 257.513,240.804 260.619 L 240.999 261.143 275.499 261.139 L 310.000 261.135 311.024 259.873 L 312.048 258.612 310.548 257.147 C 309.723 256.342,308.490 255.183,307.810 254.571 C 307.129 253.959,305.586 252.545,304.381 251.428 C 303.176 250.311,300.219 247.599,297.810 245.401 C 288.953 237.321,286.434 235.024,279.905 229.074 C 276.238 225.733,272.788 222.571,272.238 222.047 C 271.688 221.523,271.238 221.160,271.238 221.240 " stroke="none" fill="#444444" fill-rule="evenodd" />
                 </svg>
-                <span class="app-brand-text demo menu-text fw-bold ms-2">Simpercil</span>
+                <span class="app-brand-text demo menu-text fw-bold ms-2">Perencanaan</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -410,28 +410,8 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{route('kertas_kerjas.index')}}" class="menu-link">
-                    <div>Kertas Kerja</div>
-                  </a>
-                </li>
-                <li class="menu-item">
                   <a href="{{route('tanggal_perencanaans.index')}}" class="menu-link">
                     <div>Tanggal Perencanaan</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="cards-analytics.html" class="menu-link">
-                    <div data-i18n="Analytics">Analytics</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="cards-gamifications.html" class="menu-link">
-                    <div data-i18n="Gamifications">Gamifications</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="cards-actions.html" class="menu-link">
-                    <div data-i18n="Actions">Actions</div>
                   </a>
                 </li>
               </ul>
@@ -503,54 +483,8 @@
                     </a>
                   </li>
                 </ul>
-                {{-- <ul class="menu-sub">
-                  <li class="menu-item">
-                    <a href="{{route('usulan_barang_barjas_apbds.index')}}" class="menu-link">
-                      <div>Barang Jasa</div>
-                      <div class="badge bg-danger rounded-pill ms-auto">APBD</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="{{route('usulan_barang_persediaan_apbds.index')}}" class="menu-link">
-                      <div>Persediaan</div>
-                      <div class="badge bg-danger rounded-pill ms-auto">APBD</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="{{route('usulan_barang_modal_apbds.index')}}" class="menu-link">
-                      <div>Modal</div>
-                      <div class="badge bg-danger rounded-pill ms-auto">APBD</div>
-                    </a>
-                  </li>
-                </ul> --}}
               </li>
-              {{-- <li class="menu-item">
-                <a href="javascript:void(0)" class="menu-link menu-toggle">
-                  <i class="menu-icon tf-icons mdi mdi-archive-outline"></i>
-                  <div>Belanja</div>
-                  <div class="badge bg-danger rounded-pill ms-auto">APBD</div>
-                </a>
-                <ul class="menu-sub">
-                  <li class="menu-item">
-                    <a href="{{route('usulan_barang_barjass.index')}}" class="menu-link">
-                      <div>Barang Jasa</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="{{route('usulan_barang_persediaans.index')}}" class="menu-link">
-                      <div>Persediaan</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="{{route('usulan_barang_modals.index')}}" class="menu-link">
-                      <div>Modal</div>
-                    </a>
-                  </li>
-                </ul>
-              </li> --}}
-              
   
-              <!-- Extended components -->
               <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons mdi mdi-star-outline"></i>
@@ -796,11 +730,9 @@
             @endif
 
             @if (session('nama_level_user')== 'Direktur')
-             <!-- Forms & Tables -->
              <li class="menu-header fw-light mt-4">
               <span class="menu-header-text">Validasi Belanja</span>
             </li>
-            <!-- Forms -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-checkbox-marked-circle-outline"></i>
@@ -838,11 +770,9 @@
                   @endif
             
             @if (in_array(session('nama_level_user'), $level_kabag))
-               <!-- Forms & Tables -->
                <li class="menu-header fw-light mt-4">
                 <span class="menu-header-text">Validasi Kabag/Kabid</span>
               </li>
-              <!-- Forms -->
               <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons mdi mdi-checkbox-marked-circle-outline"></i>
@@ -934,11 +864,9 @@
               </li>
               @endif
               @if (in_array(session('nama_level_user'), $level_pengadaan_pej))
-            <!-- Forms & Tables -->
             <li class="menu-header fw-light mt-4">
               <span class="menu-header-text">Ringkasa &amp; RBA</span>
             </li>
-            <!-- Forms -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-form-select"></i>
@@ -983,11 +911,9 @@
               </ul>
             </li>
 
-             <!-- Forms & Tables -->
              <li class="menu-header fw-light mt-4">
               <span class="menu-header-text">Ringkasa &amp; e-RBA</span>
             </li>
-            <!-- Forms -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-form-select"></i>
@@ -1077,11 +1003,9 @@
               </ul>
             </li>
 
-            <!-- Forms & Tables -->
             <li class="menu-header fw-light mt-4">
               <span class="menu-header-text">Ringkasa &amp; DPA</span>
             </li>
-            <!-- Forms -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-form-select"></i>
@@ -1122,9 +1046,8 @@
               </ul>
             </li>
            @endif
-            <!-- Charts & Maps -->
             <li class="menu-header fw-light mt-4">
-              <span class="menu-header-text">Simpercil @2024</span>
+              <span class="menu-header-text">Sistem Perencana @2025</span>
             </li>
            
           </ul>

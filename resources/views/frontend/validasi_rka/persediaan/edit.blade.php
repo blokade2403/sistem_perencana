@@ -386,13 +386,9 @@
                                         <!--/ Modal -->
                                     </div>
                                 </div>
-                                    {{-- <div class="mt-2">
-                                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#onboardImageModal" onclick="saveChanges()">Save changes</button>
-                                        <a href="" class="btn btn-outline-secondary">Discard</a>
-                                    </div> --}}
                                     <div class="mt-2">
                                         @if ($faseTahun === 'Penetapan')
-                                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#onboardImageModal" onclick="saveChanges()">Save changes</button>
+                                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#onboardImageModal" onclick="saveChanges()">Simpan</button>
                                         <a href="{{route('validasi_persediaan_rkas.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                         @else
                                         <button type="submit" class="btn btn-primary me-2">Simpan</button>

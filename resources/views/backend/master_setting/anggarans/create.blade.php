@@ -62,7 +62,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-6 mb-3">
                                             <div class="input-group input-group-merge">
                                                 <div class="form-floating form-floating-outline">
                                                     <select name="tahun_anggaran" class="select2 form-select form-select-lg" data-allow-clear="true">
@@ -77,29 +77,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="alert alert-warning mb-4 alert-dismissible" role="alert">
-                                                    <h6 class="alert-heading mb-1 d-flex align-items-end">
-                                                        <i class="mdi mdi-alert-outline mdi-20px me-2"></i>
-                                                        <span>We need your attention!</span>
-                                                    </h6>
-                                                    <div class="accordion mt-3" id="accordionWithIcon">
-                                                        <div class="accordion-item">
-                                                            <h2 class="accordion-header d-flex align-items-center">
-                                                            </h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Save changes</button>
-                                    <a href="{{route('anggarans.index')}}" class="btn btn-outline-secondary">Back</a>
+                                <div class="mt-2 mb-3">
+                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Simpan</button>
+                                    <a href="{{route('anggarans.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

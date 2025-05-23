@@ -116,14 +116,14 @@ class RkbuPegawaiPnsController extends Controller
             $request->all(),
             [
 
-                'id_sub_kategori_rkbu'          => 'required',
-                'id_kode_rekening_belanja'      => 'required',
-                'id_user'                       => 'required',
-                'total_anggaran'                => 'required',
-                'nama_tahun_anggaran'           => 'required',
-                'id_status_validasi'            => '',
-                'nama_pegawai'                   => 'nullable',
-                'tempat_lahir'                   => 'nullable',
+                'id_sub_kategori_rkbu'              => 'required',
+                'id_kode_rekening_belanja'          => 'required',
+                'id_user'                           => 'required',
+                'total_anggaran'                    => 'required',
+                'nama_tahun_anggaran'               => 'required',
+                'id_status_validasi'                => '',
+                'nama_pegawai'                      => 'nullable',
+                'tempat_lahir'                      => 'nullable',
                 'tanggal_lahir'                     => 'nullable',
                 'pendidikan'                        => 'nullable',
                 'status_kawin'                      => 'nullable',
@@ -183,17 +183,17 @@ class RkbuPegawaiPnsController extends Controller
         $RkbuPegawai->rating                        = $request->input('rating', 0);
         $RkbuPegawai->link_ekatalog                 = $request->input('link_ekatalog', 0);
         $RkbuPegawai->penempatan                    = $request->input('penempatan', 0);
-        $RkbuPegawai->vol_1                           = $request->input('vol_1', 0);
-        $RkbuPegawai->vol_1                           = $request->input('vol_1', 0);
-        $RkbuPegawai->stok                           = $request->input('stok', 0);
-        $RkbuPegawai->rata_rata_pemakaian            = $request->input('rata_rata_pemakaian', 0);
-        $RkbuPegawai->kebutuhan_per_bulan            = $request->input('kebutuhan_per_bulan', 0);
-        $RkbuPegawai->buffer                         = $request->input('buffer', 0);
-        $RkbuPegawai->pengadaan_sebelumnya           = $request->input('pengadaan_sebelumnya', 0);
-        $RkbuPegawai->proyeksi_sisa_stok             = $request->input('proyeksi_sisa_stok', 0);
-        $RkbuPegawai->kebutuhan_plus_buffer          = $request->input('kebutuhan_plus_buffer', 0);
-        $RkbuPegawai->kebutuhan_tahun_x1             = $request->input('kebutuhan_tahun_x1', 0);
-        $RkbuPegawai->rencana_pengadaan_tahun_x1     = $request->input('rencana_pengadaan_tahun_x1', 0);
+        $RkbuPegawai->vol_1                         = $request->input('vol_1', 0);
+        $RkbuPegawai->vol_1                         = $request->input('vol_1', 0);
+        $RkbuPegawai->stok                          = $request->input('stok', 0);
+        $RkbuPegawai->rata_rata_pemakaian           = $request->input('rata_rata_pemakaian', 0);
+        $RkbuPegawai->kebutuhan_per_bulan           = $request->input('kebutuhan_per_bulan', 0);
+        $RkbuPegawai->buffer                        = $request->input('buffer', 0);
+        $RkbuPegawai->pengadaan_sebelumnya          = $request->input('pengadaan_sebelumnya', 0);
+        $RkbuPegawai->proyeksi_sisa_stok            = $request->input('proyeksi_sisa_stok', 0);
+        $RkbuPegawai->kebutuhan_plus_buffer         = $request->input('kebutuhan_plus_buffer', 0);
+        $RkbuPegawai->kebutuhan_tahun_x1            = $request->input('kebutuhan_tahun_x1', 0);
+        $RkbuPegawai->rencana_pengadaan_tahun_x1    = $request->input('rencana_pengadaan_tahun_x1', 0);
         $RkbuPegawai->id_sub_kategori_rekening    = $request->input('id_sub_kategori_rekening');
         $RkbuPegawai->id_sub_kategori_rkbu        = $request->input('id_sub_kategori_rkbu');
         $RkbuPegawai->id_kode_rekening_belanja    = $idKodeRekeningBelanja;

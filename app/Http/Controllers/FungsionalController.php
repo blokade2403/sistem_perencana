@@ -90,6 +90,9 @@ class FungsionalController extends Controller
      */
     public function destroy(Fungsional $fungsional)
     {
-        //
+        $fungsional->delete();
+
+        return redirect()->route('fungsionals.index')
+            ->with('success', 'Fungsional Jabatan deleted successfully.');
     }
 }

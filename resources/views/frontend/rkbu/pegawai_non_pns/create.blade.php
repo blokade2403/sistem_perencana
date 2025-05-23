@@ -3,7 +3,6 @@
 <div class="content-wrapper">
     <!-- Content -->
     
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Title</h4>
         @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -364,8 +363,8 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                <a href="" class="btn btn-outline-secondary">Discard</a>
+                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                <a href="{{route('rkbu_pegawai_non_pnss.index')}}" class="btn btn-outline-secondary">Kembali</a>
                             </div>
                         </div>
                     </div>

@@ -75,7 +75,7 @@
     
     <table>
         <tr>
-            <td style="font-weight: normal; margin-left: 10px; font-size: 11px; line-height: 1.5; text-align: left;" class="no-border" width="100%">Dalam rangka optimalisasi penggunaan Barang Milik Daerah Provinsi DKI Jakarta sebagai sarana penunjang kegiatan operasional pada Rumah Sakit Umum Daerah Cilincing dipandang perlu menunjuk pemegang barang inventaris berupa {{$invo->kategori_asset_bergerak}} tersebut kepada :
+            <td style="font-weight: normal; margin-left: 10px; font-size: 11px; line-height: 1.5; text-align: left;" class="no-border" width="100%">Dalam rangka optimalisasi penggunaan Barang Milik Daerah Provinsi DKI Jakarta sebagai sarana penunjang kegiatan operasional pada {{ ucwords(strtolower($judulHeaders->nama_rs)) }} dipandang perlu menunjuk pemegang barang inventaris berupa {{$invo->kategori_asset_bergerak}} tersebut kepada :
             </td>
         </tr>
         <tr>
@@ -100,7 +100,7 @@
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 1.2; text-align: left;" class="no-border" width="4%"></td>
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 1.2; text-align: left;" class="no-border" width="30%">Unit Kerja</td>
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 1.2; text-align: left;" class="no-border" width="2%">:</td>
-            <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 1.2; text-align: left;" class="no-border" width="60%">Rumah Sakit Umum Daerah Cilincing</td>
+            <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 1.2; text-align: left;" class="no-border" width="60%">{{ ucwords(strtolower($judulHeaders->nama_rs)) }}</td>
         </tr>
     </table>
     <table>
@@ -132,7 +132,7 @@
     </table>
     <table>
         <tr>
-            <td style="font-weight: normal; margin-left: 10px; font-size: 11px; line-height: 1.5; text-align: left;" class="no-border" width="100%">Untuk digunakan sebagai sarana operasional dalam rangka menunjang seluruh kegiatan Rumah Sakit Umum Daerah Cilincing Jakarta Utara dengan ketentuan sebagai berikut :</td>
+            <td style="font-weight: normal; margin-left: 10px; font-size: 11px; line-height: 1.5; text-align: left;" class="no-border" width="100%">Untuk digunakan sebagai sarana operasional dalam rangka menunjang seluruh kegiatan {{ ucwords(strtolower($judulHeaders->nama_rs)) }}  dengan ketentuan sebagai berikut :</td>
         </tr>
         <tr>
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 1.2; text-align: left;" class="no-border" width="4%"></td>

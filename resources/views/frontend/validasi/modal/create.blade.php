@@ -309,13 +309,9 @@
                                         <!--/ Modal -->
                                     </div>
                                 </div>
-                                    {{-- <div class="mt-2">
-                                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#onboardImageModal" onclick="saveChanges()">Save changes</button>
-                                        <a href="" class="btn btn-outline-secondary">Discard</a>
-                                    </div> --}}
                                     <div class="mt-2">
-                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                        <a href="" class="btn btn-outline-secondary">Discard</a>
+                                        <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                        <a href="" class="btn btn-outline-secondary">Kembali</a>
                                     </div>
                             </div>
                         </div>

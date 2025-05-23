@@ -32,9 +32,6 @@
                                                     <a href="" class="btn rounded-pill btn-label-secondary waves-effect">
                                                         <span class="tf-icons mdi mdi-download me-1"></span>Download Report
                                                     </a>
-                                                    {{-- <button type="button" class="btn rounded-pill btn-label-success waves-effect" data-bs-toggle="modal" data-bs-target="#referAndEarn">
-                                                        <span class="tf-icons mdi mdi-upload me-1"></span><span class="fa-sm"></span>
-                                                    </button> --}}
                                                     <a href="{{route('rkbu_persediaans.downloadPDFPersediaan')}}" class="btn rounded-pill btn-label-warning waves-effect">
                                                         <span class="tf-icons mdi mdi-printer me-1"></span>Print
                                                     </a>
@@ -131,7 +128,6 @@
                                             </span>
                                         </strong><br />
                                         <span class="fa-xs">Spesifikasi : {{$rkbus->spek}}</span><br />
-                                        <small><span class="fs-12">Catatan : {{$rkbus->nama_barang}}</span></small><br /><br />
                                     </td>
                                     <td class="py-2">
                                         <span class="fa-sm">Stok Tahun {{$angka_kurang_2}} : {{$rkbus->stok}}</span><br />

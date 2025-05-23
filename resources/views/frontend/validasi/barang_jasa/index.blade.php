@@ -23,9 +23,6 @@
                                                 </li>
                                             </ul>
                                                 <div class="demo-inline-spacing">
-                                                    {{-- <a href="{{route('validasi_barang_jasas.create')}}" class="btn rounded-pill btn-label-info waves-effect">
-                                                        <span class="tf-icons mdi mdi-book-plus-multiple me-1"></span>Tambah Data
-                                                    </a> --}}
                                                     @if (session('nama_level_user') == 'Administrator')
                                                     <a href="{{ route('rkbu_barang_jasa_admin.downloadReport') }}" class="btn rounded-pill btn-label-secondary waves-effect">
                                                         <span class="tf-icons mdi mdi-download me-1"></span>Download Report
@@ -79,7 +76,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /////// -->
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +95,6 @@
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th></th>
                                     <th>No</th>
                                     <th>ID SUB</th>
                                     <th>Nama Barang dan Spek</th>
@@ -121,12 +116,6 @@
                                         $no = 1;
                                         @endphp
                                     @foreach ($rkbus as $rkbus)
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class='check-item' name="id_rkbu[]" id="id_rkbu" value="" />
-                                            <label class="form-check-label" for="customCheckBox2"></label>
-                                        </div>
-                                    </td>
                                     <td>{{ $no++ }}</td>
                                     <td class="fs-14">
                                         <span class="badge bg-label-success"><span class="fa-sm">{{$rkbus->status_komponen}}</span></span><br /><br />
@@ -141,7 +130,6 @@
                                             </span>
                                         </strong><br />
                                         <span class="fa-xs">Spesifikasi : {{$rkbus->spek}}</span><br />
-                                        <small><span class="fs-12">Catatan : {{$rkbus->nama_barang}}</span></small><br /><br />
                                         <small><span class="fa-sm">Penempatan : {{$rkbus->penempatan}}</span></small><br /><br />
                                         <small><span class="badge bg-label-warning">{{$rkbus->nama_tahun_anggaran}}</span></small><br />
 
@@ -170,7 +158,13 @@
                                         <span class="fa-sm">{{$rkbus->rating}}</span><br />
                                         <span class="fa-sm">TA : {{$rkbus->nama_tahun_anggaran}}</span><br />
                                         <span class="fa-sm">{{$rkbus->created_at}}</span><br />
-                                        <span class="fa-sm">link e-kat: <a href="{{$rkbus->link_ekatalog}}"> {{$rkbus->link_ekatalog}}</a></span>
+                                        <span class="fa-sm">link e-kat: 
+                                            @if(strlen($rkbus->link_ekatalog) <= 3)
+                                                {{ $rkbus->link_ekatalog }}
+                                            @else
+                                                <a href="{{ $rkbus->link_ekatalog }}"><span class="badge bg-primary">Lihat Link</span></a>
+                                            @endif
+                                        </span>       
                                         <br />
                                         <br />
                                         @if (!empty($rkbus->upload_file_1))
@@ -306,7 +300,6 @@
                                 @endif
                             </tbody>
                             <tfoot>
-                                <th></th>
                                 <th>No</th>
                                 <th>ID SUB</th>
                                 <th>Nama Barang dan Spek</th>

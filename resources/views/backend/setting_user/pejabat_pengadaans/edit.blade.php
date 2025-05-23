@@ -149,9 +149,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                    <a href="/pejabat_pengadaans" class="btn btn-outline-secondary">Back</a>
+                                 <div class="mt-2">
+                                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                    <a href="{{route('pejabat_pengadaans.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

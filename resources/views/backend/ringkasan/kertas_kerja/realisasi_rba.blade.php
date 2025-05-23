@@ -46,9 +46,10 @@
         <div class="col-lg-12">
             <div class="card h-100">
                 <div class="card-body">
+                    @foreach ($logo as $item)
                     <div class="row mb-2 align-items-center">
                         <div class="col-md-2 align-items-center">
-                            <img class="img-fluid" src="assets/images/Jakarta.png" width="70" height="100" align="center" alt="">
+                          <img class="img-fluid" src="{{ asset('storage/uploads/' . basename($item->gambar2)) }}" width="100" height="300" align="center" alt="">
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-5 center">
@@ -59,9 +60,10 @@
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-2 align-items-center">
-                            <img class="img-fluid" src="assets/images/logo_kanan2.png" width="120" height="600" align="center" alt="">
+                            <img class="img-fluid" src="{{ asset('storage/uploads/' . basename($item->gambar1)) }}" width="120" height="600" align="center" alt="">
                         </div>
                     </div>
+                    @endforeach
                     <div class="row"><br /></div>
                     <div class="row">
                         <div class="col-md-0"></div>

@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Session;
 
 class ValidasiRkbuModalRka extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         // Ambil id_ksp dari session
@@ -146,25 +144,19 @@ class ValidasiRkbuModalRka extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
@@ -261,10 +253,6 @@ class ValidasiRkbuModalRka extends Controller
 
         // dd($total_anggaran_sebelumnya, $perubahan_anggaran, ($total_anggaran_barjas_admin + $perubahan_anggaran));
 
-        // Validasi anggaran
-        if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
-            return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
-        }
 
 
         // Validasi input
@@ -403,7 +391,7 @@ class ValidasiRkbuModalRka extends Controller
         ];
 
 
-        if ($faseTahun === 'Penetapan') {
+        if (!in_array($faseTahun, ['Perencanaan', 'Perubahan'])) {
             RkbuHistory::create([
                 'id_rkbu'                   => $validasiRkbuBarjasKsp->id_rkbu,
                 'id_jenis_kategori_rkbu'    => '9cf70e31-9b9e-4dea-8b39-5459f23f3f51',
@@ -413,6 +401,11 @@ class ValidasiRkbuModalRka extends Controller
                 'keterangan_status'         => $request->input('keterangan_status'),
                 'upload_file_5'             => $namaFile6 ?? null,
             ]);
+
+            // Validasi anggaran
+            if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
+                return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
+            }
         }
 
         if (isset($upload_file_1)) {

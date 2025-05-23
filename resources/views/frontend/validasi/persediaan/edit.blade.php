@@ -2,8 +2,6 @@
 @section('container')
 <div class="content-wrapper">
     <!-- Content -->
-    
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Title</h4>
         @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -15,7 +13,7 @@
             <div class="col-xl-12">
                 <div class="card-body">
                     <div class="card mb-4">
-                        <h5 class="card-header">Komponen Belanja 2</h5>
+                        <h5 class="card-header">Komponen Belanja</h5>
                         <div class="card-body pt-1">
                             <div class="row">
                                 <div class="col-md-4 mb-3">
@@ -353,16 +351,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <label class="switch">
-                                                    <input type="checkbox" class="switch-input" />
-                                                    <span class="switch-toggle-slider">
-                                                        <span class="switch-on"></span>
-                                                        <span class="switch-off"></span>
-                                                    </span>
-                                                    <span class="switch-label">Save card for future billing?</span>
-                                                </label>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mt-5 mt-md-0">
@@ -386,15 +374,11 @@
                                         <!--/ Modal -->
                                     </div>
                                 </div>
-                                    {{-- <div class="mt-2">
-                                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#onboardImageModal" onclick="saveChanges()">Save changes</button>
-                                        <a href="" class="btn btn-outline-secondary">Discard</a>
-                                    </div> --}}
                                     <div class="mt-2">
                                         @if ($rkbuPersediaan->id_status_validasi_rka == '9cfb1f87-238b-4ea2-98f0-4255e578b1d1')
-                                        <button type="submit" class="btn btn-primary me-2" disabled>Save changes</button>
+                                        <button type="submit" class="btn btn-primary me-2" disabled>Simpan</button>
                                         @else
-                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                        <button type="submit" class="btn btn-primary me-2">Simpan</button>
                                         @endif
                                         <a href="{{route('validasi_persediaans.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                     </div>

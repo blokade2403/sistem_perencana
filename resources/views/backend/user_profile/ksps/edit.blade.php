@@ -14,10 +14,10 @@
                 <div class="card-body">
                     <div class="card mb-4">
                         <!-- Current Plan -->
-                        <h5 class="card-header">Edit KSP/Ka. Ins</h5>
+                        <h5 class="card-header">Edit Data KSP/Ka. Ins</h5>
                         <div class="card-body pt-1">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div id="creditCardForm" class="row g-4">
                                         <div class="col-12 col-md-6">
                                             <div class="input-group input-group-merge">
@@ -51,7 +51,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-6 mb-3">
                                             <div class="input-group input-group-merge">
                                                 <div class="form-floating form-floating-outline">
                                                     <select name="id_pejabat" class="select2 form-select form-select-lg" data-allow-clear="true">
@@ -66,35 +66,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <div class="alert alert-warning mb-4 alert-dismissible" role="alert">
-                                                    <h6 class="alert-heading mb-1 d-flex align-items-end">
-                                                        <i class="mdi mdi-alert-outline mdi-20px me-2"></i>
-                                                        <span>We need your attention!</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group input-group-merge">
-                                            <div class="form-floating form-floating-outline">
-                                                <select name="status" class="select2 form-select form-select-lg" data-allow-clear="true">
-                                                    <option value="{{$ksps->status}}">{{$ksps->status}}</option>
-                                                    <option value="aktif">Aktif</option>
-                                                    <option value="tidak aktif">Non Aktif</option>
-                                                </select>
-                                                <label for="floatingSelect">Status</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Save changes</button>
-                                    <a href="/ksps" class="btn btn-outline-secondary">Back</a>
+                                  <div class="mt-2">
+                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Update</button>
+                                    <a href="{{route('ksps.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

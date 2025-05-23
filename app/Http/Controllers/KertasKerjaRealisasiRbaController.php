@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rkbu;
+use App\Models\JudulHeader;
 use App\Models\JenisBelanja;
 use Illuminate\Http\Request;
 use App\Models\SubKategoriRkbu;
@@ -261,6 +262,7 @@ class KertasKerjaRealisasiRbaController extends Controller
             ->groupBy('jenis_belanjas.id_jenis_belanja')
             ->pluck('total_realisasi_jenis_belanja', 'id_jenis_belanja');
 
+        $logo = JudulHeader::get();
 
         $realisasi_per_kategori = DB::table('master_spjs')
             ->select('kategori_rkbus.id_kategori_rkbu', DB::raw('SUM(DISTINCT master_spjs.pembayaran) as total_realisasi_kategori'))
@@ -431,6 +433,6 @@ class KertasKerjaRealisasiRbaController extends Controller
         // Cek apakah data kosong
         $dataKosong = $categories->isEmpty();
 
-        return view('backend.ringkasan.kertas_kerja.realisasi_rba', compact('rkbus', 'dataKosong', 'sisa_anggaran_blud', 'total_anggaran_blud', 'sub_kategori_rkbus', 'status_validasi_rka', 'categories', 'namaProgram', 'namaKegiatan', 'namaSubKegiatan', 'kodeProgram', 'kodeKegiatan', 'kodeSubKegiatan', 'total_anggaran_jenis', 'total_anggaran_kategori', 'total_anggaran_kategori_rkbu', 'total_anggaran_kategori_rkbu'));
+        return view('backend.ringkasan.kertas_kerja.realisasi_rba', compact('rkbus', 'logo', 'dataKosong', 'sisa_anggaran_blud', 'total_anggaran_blud', 'sub_kategori_rkbus', 'status_validasi_rka', 'categories', 'namaProgram', 'namaKegiatan', 'namaSubKegiatan', 'kodeProgram', 'kodeKegiatan', 'kodeSubKegiatan', 'total_anggaran_jenis', 'total_anggaran_kategori', 'total_anggaran_kategori_rkbu', 'total_anggaran_kategori_rkbu'));
     }
 }

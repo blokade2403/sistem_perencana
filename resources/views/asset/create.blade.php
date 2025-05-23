@@ -13,7 +13,7 @@
                         <form id="confirmSubmitForm"  method="POST" action="{{route(('barang_assets.store'))}}" enctype="multipart/form-data">
                             @csrf
                             <div class="card mb-4">
-                                <h5 class="card-header">Data Asset</h5>
+                                <h5 class="card-header">Tambah Data Asset</h5>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
@@ -167,20 +167,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                     <h5 class="text-light fw-semibold">Detail Kendaraan Operasional / Ambulan</h5>
                                 <hr>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div id="creditCardForm" class="row g-4">
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="text" name="tgl_bpkb" class="form-control" placeholder="John Doe" />
+                                                        <input type="text" name="tgl_bpkb" class="form-control" placeholder="Nomor" />
                                                         <label for="paymentName">Tanggal BPKB</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-floating form-floating-outline">
                                                         <div class="form-floating form-floating-outline">
-                                                            <input type="text" name="no_rangka" class="form-control" placeholder="John Doe" />
+                                                            <input type="text" name="no_rangka" class="form-control" placeholder="Nomor" />
                                                             <label for="paymentName">Nomor Rangka</label>
                                                         </div>
                                                     </div>
@@ -191,14 +192,14 @@
                                             <div id="creditCardForm" class="row g-4">
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="text" name="no_mesin" class="form-control" placeholder="John Doe" />
+                                                        <input type="text" name="no_mesin" class="form-control" placeholder="Nomor" />
                                                         <label for="paymentName">Nomor Mesin</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <div class="form-floating form-floating-outline">
                                                         <div class="form-floating form-floating-outline">
-                                                            <input type="text" name="no_polisi" class="form-control" placeholder="John Doe" />
+                                                            <input type="text" name="no_polisi" class="form-control" placeholder="Nomor" />
                                                             <label for="paymentName">Nomor Polisi</label>
                                                         </div>
                                                     </div>
@@ -291,7 +292,7 @@
                                                             </div>
                                                             <div class="d-flex flex-column text-start text-lg-end">
 
-                                                                <small class="mt-sm-auto mt-2 order-sm-1 order-0 text-muted">Card expires at 12/26</small>
+                                                                <small class="mt-sm-auto mt-2 order-sm-1 order-0 text-muted">Harga Satuan Asset</small>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -365,8 +366,8 @@
                                         </div>
                                     </div>
                                     <div class="col-12 mt-4">
-                                        <button type="submit" class="btn btn-primary me-sm-3 me-1">Save Changes</button>
-                                        <a href="{{route('barang_assets.index')}}" class="btn btn-outline-secondary">Cancel</a>
+                                        <button type="submit" class="btn btn-primary me-sm-3 me-1">Simpan</button>
+                                        <a href="{{route('barang_assets.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                     </div>
                                 </div>
                         </form>

@@ -24,9 +24,6 @@
                                                 </li>
                                             </ul>
                                                 <div class="demo-inline-spacing">
-                                                    {{-- <a href="{{route('validasi_persediaans.create')}}" class="btn rounded-pill btn-label-info waves-effect">
-                                                        <span class="tf-icons mdi mdi-book-plus-multiple me-1"></span>Tambah Data
-                                                    </a> --}}
                                                     @if (session('nama_level_user') == 'Administrator')
                                                     <a href="{{ route('rkbu_barang_jasa_admin.downloadReport') }}" class="btn rounded-pill btn-label-secondary waves-effect">
                                                         <span class="tf-icons mdi mdi-download me-1"></span>Download Report
@@ -102,7 +99,6 @@
                         <table id="example" class="table table-striped" style="min-width: 845px">
                             <thead>
                                 <tr>
-                                    <th></th>
                                     <th>No</th>
                                     <th>ID Sub</th>
                                     <th>Detail Usulan Barang</th>
@@ -124,12 +120,6 @@
                                     $no = 1;
                                     @endphp
                                 @foreach ($rkbus as $rkbus)
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class='check-item' name="id_rkbu[]" id="id_rkbu" value="" />
-                                            <label class="form-check-label" for="customCheckBox2"></label>
-                                        </div>
-                                    </td>
                                     <td>{{ $no++ }}</td>
                                     <td class="fs-14" style="width: 100px">
                                         <span class="badge bg-label-success"><span class="fa-sm">{{$rkbus->status_komponen}}</span></span><br /><br />
@@ -142,7 +132,6 @@
                                             </span>
                                         </strong><br />
                                         <span class="fa-xs">Spesifikasi : {{$rkbus->spek}}</span><br />
-                                        <small><span class="fs-12">Catatan : {{$rkbus->nama_barang}}</span></small><br /><br />
                                     </td>
                                     <td class="py-2">
                                         <span class="fa-sm">Stok Tahun {{$angka_kurang_2}} : {{$rkbus->stok}}</span><br />
@@ -311,13 +300,11 @@
                                         </div>
                                 </div>
                                     </td> <!-- Close the <td> tag here -->
-
                                 </tr>
                                 @endforeach
                                 @endif
                             </tbody>
                             <tfoot>
-                                <th></th>
                                     <th>No</th>
                                     <th>ID SUB</th>
                                     <th>Nama Barang dan Spek</th>

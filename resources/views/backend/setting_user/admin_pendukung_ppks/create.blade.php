@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <div class="card mb-4">
                         <!-- Current Plan -->
-                        <h5 class="card-header">Create KSP/Ka. Ins</h5>
+                        <h5 class="card-header">Create Pendukung PPK</h5>
                         <div class="card-body pt-1">
                             <div class="row">
                                 <div class="col-md-6">
@@ -91,8 +91,8 @@
                                     </div>
                                 </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Save changes</button>
-                                    <a href="{{route('admin_pendukungs.index')}}" class="btn btn-outline-secondary">Back</a>
+                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Simpan</button>
+                                    <a href="{{route('admin_pendukungs.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

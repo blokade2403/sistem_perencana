@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <div class="card mb-4">
                             <!-- Current Plan -->
-                            <h5 class="card-header">User Login</h5>
+                            <h5 class="card-header">Tambah Data User Login</h5>
                             <div class="card-body pt-1">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -16,7 +16,7 @@
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text"> <i class="mdi mdi-account me-2"></i></span>
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="text" class="form-control" name="username" id="basic-addon11" placeholder="John Doe" aria-label="Username" aria-describedby="basic-addon11" />
+                                                        <input type="text" class="form-control" name="username" id="basic-addon11" placeholder="Username" aria-label="Username" aria-describedby="basic-addon11" />
                                                         <label for="basic-addon11">Username</label>
                                                     </div>
                                                 </div>
@@ -25,17 +25,16 @@
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text"> <i class="mdi mdi-account me-2"></i></span>
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="text" class="form-control" name="nama_lengkap" id="basic-addon11" placeholder="John Doe" aria-label="Username" aria-describedby="basic-addon11" />
-                                                        {{-- <input type="hidden" class="form-control" name="id_fase" value="1" /> --}}
+                                                        <input type="text" class="form-control" name="nama_lengkap" id="basic-addon11" placeholder="Nama" aria-label="Username" aria-describedby="basic-addon11" />
                                                         <label for="basic-addon11">Nama Lengkap</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="input-group input-group-merge">
-                                                    <span class="input-group-text"> <i class="mdi mdi-email me-2"></i></span>
+                                                    <span class="input-group-text"> <i class="mdi mdi-badge-account-outline me-2"></i></span>
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="number" class="form-control" name="nip_user" id="basic-addon11" placeholder="John Doe" aria-label="Username" aria-describedby="basic-addon11" />
+                                                        <input type="number" class="form-control" name="nip_user" id="basic-addon11" placeholder="Nomor Induk" aria-label="Username" aria-describedby="basic-addon11" />
                                                         <label for="basic-addon11">NIP User</label>
                                                     </div>
                                                 </div>
@@ -44,7 +43,7 @@
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text"> <i class="mdi mdi-email me-2"></i></span>
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="text" class="form-control" name="email" id="basic-addon11" placeholder="John Doe" aria-label="Username" aria-describedby="basic-addon11" />
+                                                        <input type="text" class="form-control" name="email" id="basic-addon11" placeholder="@gmail.com" aria-label="Username" aria-describedby="basic-addon11" />
                                                         <label for="basic-addon11">Email</label>
                                                     </div>
                                                 </div>
@@ -53,7 +52,7 @@
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text"> <i class="mdi mdi-lock me-2"></i></span>
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="password" class="form-control" name="password" id="basic-addon11" placeholder="John Doe" aria-label="Username" aria-describedby="basic-addon11" />
+                                                        <input type="password" class="form-control" name="password" id="basic-addon11" placeholder="******" aria-label="Username" aria-describedby="basic-addon11" />
                                                         <label for="basic-addon11">Password</label>
                                                     </div>
                                                 </div>
@@ -172,21 +171,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 ">
+                                    <div class="col-md-6 mb-3">
                                         <div id="creditCardForm" class="row g-4">
-                                            <div class="added-cards">
-                                                <div class="cardMaster bg-lighter p-3 rounded mb-3">
-                                                    <div class="d-flex justify-content-between flex-sm-row flex-column">
-                                                        <div class="input-group input-group-merge">
-                                                            <div class="form-floating form-floating-outline">
-                                                                <select name="status_edit" class="select2 form-select form-select-lg" data-allow-clear="true">
-                                                                    <option data-display="Select">Please select</option>
-                                                                    <option value="aktif">Aktif</option>
-                                                                    <option value="tidak aktif">Non Aktif</option>
-                                                                </select>
-                                                                <label for="floatingSelect">Status Edit</label>
-                                                            </div>
-                                                        </div>
+                                            <div class="d-flex justify-content-between flex-sm-row flex-column">
+                                                <div class="input-group input-group-merge">
+                                                    <div class="form-floating form-floating-outline">
+                                                        <select name="status_edit" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                                            <option data-display="Select">Please select</option>
+                                                            <option value="aktif">Aktif</option>
+                                                            <option value="tidak aktif">Non Aktif</option>
+                                                        </select>
+                                                        <label for="floatingSelect">Status Edit</label>
                                                     </div>
                                                 </div>
                                             </div>

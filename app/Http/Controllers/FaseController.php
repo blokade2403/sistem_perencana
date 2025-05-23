@@ -106,6 +106,9 @@ class FaseController extends Controller
      */
     public function destroy(Fase $fase)
     {
-        //
+        $fase->delete();
+
+        return redirect()->route('fases.index')
+            ->with('success', 'Fase User deleted successfully.');
     }
 }

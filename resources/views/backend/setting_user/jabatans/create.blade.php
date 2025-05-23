@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id="creditCardForm" class="row g-4">
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-12 col-md-12">
                                             <h5 class="card-header">Nama Struktur Jabatan</h5>
                                             <div class="card-body">
                                               <div class="form-floating form-floating-outline">

@@ -135,7 +135,7 @@ class PdfControllerSptjmAsset extends Controller
         $pdf->writeHTML($html, true, false, true, false, '');
 
         // Tambahkan konten body dari view 'print_rkbu_modal_kantor'
-        $htmlBody = view('asset.pdf_sptjm_pengguna_asset', compact('invo', 'pengurus_barang'))->render();
+        $htmlBody = view('asset.pdf_sptjm_pengguna_asset', compact('invo', 'judulHeaders', 'pengurus_barang'))->render();
 
         // Tuliskan konten body ke PDF
         $pdf->writeHTML($htmlBody, true, false, true, false, '');

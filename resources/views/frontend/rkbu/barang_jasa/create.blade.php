@@ -232,12 +232,6 @@
                                         <div class="accordion mt-3" id="accordionWithIcon">
                                             <span id="nama_kategori_rekening"></span><br>
                                             <span id="nama_sub_kategori_rekening"></span><br>
-                                            {{-- <span id="nama_aktivitas"></span><br> --}}
-                                            {{-- <span id="nama_program"></span><br>
-                                            <span id="nama_kegiatan"></span><br>
-                                            <span id="nama_sub_kegiatan"></span><br>
-                                            <span id="nama_jenis_belanja"></span><br>
-                                            <span id="nama_kategori_rkbu"></span><br> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -274,16 +268,6 @@
                                                         <input class="form-control" type="file" name="upload_file_4" id="formFileMultiple" multiple />
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="switch">
-                                                    <input type="checkbox" class="switch-input" />
-                                                    <span class="switch-toggle-slider">
-                                                        <span class="switch-on"></span>
-                                                        <span class="switch-off"></span>
-                                                    </span>
-                                                    <span class="switch-label">Save card for future billing?</span>
-                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -327,13 +311,10 @@
                                         <!--/ Modal -->
                                     </div>
                                 </div>
-                                    {{-- <div class="mt-2">
-                                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#onboardImageModal" onclick="saveChanges()">Save changes</button>
-                                        <a href="" class="btn btn-outline-secondary">Discard</a>
-                                    </div> --}}
+                                   
                                     <div class="mt-2">
-                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                        <a href="" class="btn btn-outline-secondary">Discard</a>
+                                        <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                        <a href="{{route('rkbu_barang_jasas.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                     </div>
                             </div>
                         </div>

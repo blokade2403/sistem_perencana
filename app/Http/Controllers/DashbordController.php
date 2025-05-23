@@ -333,7 +333,14 @@ class DashbordController extends Controller
         $total_anggaran_ksp_apbd = $total_anggaran_pegawai_ksp_apbd + $total_anggaran_modal_ksp_apbd + $total_anggaran_barjas_ksp_apbd;
 
         // Query for user totals
-        $total_anggaran_user_apbd = Rkbu::where('id_user', $id_user)->sum('total_anggaran');
+        $total_anggaran_user_apbd = Rkbu::join('rekening_belanjas', 'rekening_belanjas.id_kode_rekening_belanja', '=', 'rkbus.id_kode_rekening_belanja')
+            ->join('aktivitas', 'aktivitas.id_aktivitas', '=', 'rekening_belanjas.id_aktivitas')
+            ->join('sub_kegiatans', 'sub_kegiatans.id_sub_kegiatan', '=', 'aktivitas.id_sub_kegiatan')
+            ->join('sumber_danas', 'sumber_danas.id_sumber_dana', '=', 'sub_kegiatans.id_sumber_dana')
+            ->where('sumber_danas.id_sumber_dana', '!=', '9cdfcedb-cc19-4b65-b889-4a5e2dc0ebe3')
+            ->where('id_user', $id_user)
+            ->sum('total_anggaran');
+
         $total_anggaran_modal_user_apbd = Rkbu::where('id_user', $id_user)
             ->whereIn('id_kode_rekening_belanja', $modal_apbd)
             ->where('rkbus.nama_tahun_anggaran', $tahunAnggaran)

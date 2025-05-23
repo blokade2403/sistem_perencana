@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-6 mb-3">
                                             <div class="input-group input-group-merge">
                                                 <div class="form-floating form-floating-outline">
                                                     <select name="tahun_anggaran" class="select2 form-select form-select-lg" data-allow-clear="true">
@@ -98,9 +98,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Save changes</button>
-                                    <a href="{{route('anggarans.index')}}" class="btn btn-outline-secondary">Back</a>
+                                <div class="mt-2 mb-3">
+                                    <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit()">Simpan</button>
+                                    <a href="{{route('anggarans.index')}}" class="btn btn-outline-secondary">Kembali</a>
                                 </div>
                             </div>
                         </div>

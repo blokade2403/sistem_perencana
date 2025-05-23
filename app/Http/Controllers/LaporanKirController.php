@@ -21,6 +21,8 @@ class LaporanKirController extends Controller
             ->with('penempatan')
             ->get();
 
+        $judulHeaders = JudulHeader::first();
+
         $totalAsset         = Asset::count();
 
         $totalBaik          = Asset::where('kondisi_asset', 'Baik')->count();
@@ -30,6 +32,7 @@ class LaporanKirController extends Controller
 
         return view('asset.laporan_kir.index', compact(
             'assetsGrouped',
+            'judulHeaders',
             'totalAsset',
             'totalBaik',
             'totalRusakRingan',
@@ -44,6 +47,7 @@ class LaporanKirController extends Controller
         // Ambil data penempatan dan aset berdasarkan id_penempatan
         $penempatan = Penempatan::where('id_penempatan', $id_penempatan)->firstOrFail();
         $assets = Asset::where('id_penempatan', $id_penempatan)->get();
+        $judulHeaders = JudulHeader::first();
 
         $first_direktur = PejabatPengadaan::first();
 
@@ -114,7 +118,7 @@ class LaporanKirController extends Controller
         $requiredSpace = 50; // Tentukan tinggi yang diperlukan untuk elemen (misalnya tabel)
         $this->checkPageBreak($pdf, $requiredSpace);
 
-        $htmlBody = view('asset.laporan_kir.print', compact('penempatan', 'assets'))->render();
+        $htmlBody = view('asset.laporan_kir.print', compact('penempatan', 'judulHeaders', 'assets'))->render();
 
         // Tuliskan konten body ke PDF
         $pdf->writeHTML($htmlBody, true, false, true, false, '');
@@ -130,7 +134,7 @@ class LaporanKirController extends Controller
                 <tr class="table-rows" bgcolor="#ffffff">
                     <th scope="row" width="20%" align="center">Pengurus Barang Pengguna atau Pengurus Barang Pembantu</th>
                     <th width="45%" align="center"></th>
-                    <th width="30%" align="center">Direktur Rumah Sakit Umum Daerah Cilincing </th> 
+                   <th width="30%" align="center">Direktur ' . ucwords(strtolower($judulHeaders->nama_rs)) . '</th>
                 </tr>
                 <p></p>
                 <tr class="table-rows" bgcolor="#ffffff">

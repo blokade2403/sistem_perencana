@@ -154,7 +154,7 @@
             <tr>
                 <th width="15%" align="left">Kuasa Pengguna Barang</th>
                 <td width="2%" align="right">: </td>
-                <td width="80%" align="left">RUMAH SAKIT UMUM DAERAH CILINCING </td>
+                <td width="80%" align="left">{{ ($judulHeaders->nama_rs) }}</td>
             </tr>
             <tr>
                 <th width="15%" align="left">Nama Bangunan dan Gedung</th>

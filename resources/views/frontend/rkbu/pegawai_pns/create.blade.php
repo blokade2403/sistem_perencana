@@ -2,8 +2,6 @@
 @section('container')
 <div class="content-wrapper">
     <!-- Content -->
-    
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Title</h4>
         @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -76,7 +74,7 @@
                                     <div id="creditCardForm" class="row g-4">
                                         <div class="col-12 col-md-6">
                                             <div class="form-floating form-floating-outline">
-                                                <input type="text" class="form-control" name="tempat_lahir" placeholder="1" aria-label="Amount (to the nearest dollar)" id="vol1" onkeyup="sum();" required />
+                                                <input type="text" class="form-control" name="tempat_lahir" value="{{old('tempat_lahir')}}" placeholder="1" aria-label="Amount (to the nearest dollar)" id="vol1" onkeyup="sum();" required />
                                                 <label for="basic-addon11">Tempat Lahir</label>
                                             </div>
                                         </div>
@@ -90,14 +88,14 @@
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-floating form-floating-outline">
-                                                <input type="text" class="form-control" name="jabatan" placeholder="1" aria-label="Amount (to the nearest dollar)" />
+                                                <input type="text" class="form-control" name="jabatan" value="{{old('jabatan')}}" placeholder="1" aria-label="Amount (to the nearest dollar)" />
                                                 <label for="basic-addon11">Jabatan</label>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-floating form-floating-outline">
                                                 <div class="form-floating form-floating-outline">
-                                                    <input type="text" class="form-control" name="pendidikan" placeholder="1" aria-label="Amount (to the nearest dollar)" />
+                                                    <input type="text" class="form-control" name="pendidikan" value="{{old('pendidikan')}}" placeholder="1" aria-label="Amount (to the nearest dollar)" />
                                                     <label for="basic-addon11">Pendidikan</label>
                                                 </div>
                                             </div>
@@ -222,7 +220,7 @@
                                                         <div class="input-group input-group-floating">
                                                             <span class="input-group-text bg-lighter">Rp.</span>
                                                             <div class="form-floating">
-                                                                <input type="text" id="gaji_pokok" name="gaji_pokok" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
+                                                                <input type="text" id="gaji_pokok" name="gaji_pokok" value="{{old('gaji_pokok')}}" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
                                                                 <label for="basic-addon21">Harga Satuan</label>
                                                             </div>
                                                             <span class="form-floating-focused"></span>
@@ -232,7 +230,7 @@
                                                         <div class="input-group input-group-floating">
                                                             <span class="input-group-text bg-lighter">x</span>
                                                             <div class="form-floating">
-                                                                <input type="number" id="koefisien_gaji" name="koefisien_gaji" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
+                                                                <input type="number" id="koefisien_gaji" name="koefisien_gaji" value="{{old('koefisien_gaji')}}" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
                                                                 <label for="basic-addon21">Koefisien Gaji</label>
                                                             </div>
                                                             <span class="form-floating-focused"></span>
@@ -246,7 +244,7 @@
                                                 <div class="input-group input-group-merge">
                                                     <span class="input-group-text">[*]</span>
                                                     <div class="form-floating form-floating-outline">
-                                                        <input type="number" class="form-control" id="bpjs_kesehatan" name="bpjs_kesehatan" onkeyup="tot_remunerasi();" aria-label="Amount (to the nearest dollar)" />
+                                                        <input type="number" class="form-control" id="bpjs_kesehatan" name="bpjs_kesehatan" value="{{old('bpjs_kesehatan')}}" onkeyup="tot_remunerasi();" aria-label="Amount (to the nearest dollar)" />
                                                         <label>BPJS Kesehatan</label>
                                                     </div>
                                                     <span class="input-group-text"></span>
@@ -257,7 +255,7 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text">[*]</span>
                                                 <div class="form-floating form-floating-outline">
-                                                    <input type="number" id="bpjs_tk" name="bpjs_tk" onkeyup="tot_remunerasi();" class="form-control" aria-label="Total" />
+                                                    <input type="number" id="bpjs_tk" name="bpjs_tk" value="{{old('bpjs_tk')}}" onkeyup="tot_remunerasi();" class="form-control" aria-label="Total" />
                                                     <label>BPJS TK</label>
                                                 </div>
                                                 <span class="input-group-text"></span>
@@ -267,7 +265,7 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text">[*]</span>
                                                 <div class="form-floating form-floating-outline">
-                                                    <input type="text" id="bpjs_jht" name="bpjs_jht" onkeyup="tot_remunerasi();" class="form-control" aria-label="Total" />
+                                                    <input type="text" id="bpjs_jht" name="bpjs_jht" value="{{old('bpjs_jht')}}" onkeyup="tot_remunerasi();" class="form-control" aria-label="Total" />
                                                     <label>BPJS JHT</label>
                                                 </div>
                                                 <span class="input-group-text"></span>
@@ -289,7 +287,7 @@
                                                         <div class="input-group input-group-floating">
                                                             <span class="input-group-text bg-lighter">Rp.</span>
                                                             <div class="form-floating">
-                                                                <input type="text" id="remunerasi" name="remunerasi" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
+                                                                <input type="text" id="remunerasi" name="remunerasi" value="{{old('remunerasi')}}" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
                                                                 <label for="basic-addon21">Harga Satuan</label>
                                                             </div>
                                                             <span class="form-floating-focused"></span>
@@ -299,7 +297,7 @@
                                                         <div class="input-group input-group-floating">
                                                             <span class="input-group-text bg-lighter">x</span>
                                                             <div class="form-floating">
-                                                                <input type="number" id="koefisien_remunerasi" name="koefisien_remunerasi" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
+                                                                <input type="number" id="koefisien_remunerasi" value="{{old('koefisien_remunerasi')}}" name="koefisien_remunerasi" onkeyup="tot_remunerasi();" class="form-control bg-lighter" id="basic-addon21" aria-label="Username" aria-describedby="basic-addon21" />
                                                                 <label for="basic-addon21">Koefisien Remunerasi</label>
                                                             </div>
                                                             <span class="form-floating-focused"></span>

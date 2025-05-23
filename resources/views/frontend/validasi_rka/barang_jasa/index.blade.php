@@ -131,7 +131,6 @@
                                         </span>
                                     </strong><br />
                                     <span class="fa-xs">Spesifikasi : {{$rkbus->spek}}</span><br />
-                                    <small><span class="fs-12">Catatan : {{$rkbus->nama_barang}}</span></small><br /><br />
                                     <small><span class="fa-sm">Penempatan : {{$rkbus->penempatan}}</span></small><br /><br />
                                     <small><span class="badge bg-label-warning">{{$rkbus->nama_tahun_anggaran}}</span></small><br />
 

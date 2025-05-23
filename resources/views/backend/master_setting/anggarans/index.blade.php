@@ -68,7 +68,7 @@
                                     @php $no = 1; @endphp
                                     @foreach ($anggarans as $key)
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $key->id_kode_rekening_belanja }}</td>
+                                    <td>{{ $key->rekening_belanjas->kode_rekening_belanja }}</td>
                                     <td>{{ $key->nama_anggaran }}</td>
                                     <td>{{ $key->sumber_dana->nama_sumber_dana}}</td>
                                     <td>{{ $key->tahun_anggaran }}</td>

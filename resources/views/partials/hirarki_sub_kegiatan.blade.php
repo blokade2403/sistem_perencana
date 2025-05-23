@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-header">
           <div class="container">
-            <h3>Hierarki Anggaran</h3>
+            <h3>Program dan Kegiatan</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>

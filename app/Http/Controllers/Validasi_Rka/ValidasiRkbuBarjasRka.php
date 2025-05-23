@@ -156,33 +156,25 @@ class ValidasiRkbuBarjasRka extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $tahunAnggaran       = Session::get('tahun_anggaran');
@@ -272,6 +264,7 @@ class ValidasiRkbuBarjasRka extends Controller
         $id_pejabat             = session('id_pejabat');
         $faseTahun              = TahunAnggaran::where('nama_tahun_anggaran', $tahunAnggaran)->value('fase_tahun');
 
+
         $idKodeRekeningBelanja_blud = '9cf603bb-bfd0-4b1e-8a24-7339459d9507';
         $idSumberDana = '9cdfcedb-cc19-4b65-b889-4a5e2dc0ebe3';
 
@@ -321,10 +314,7 @@ class ValidasiRkbuBarjasRka extends Controller
 
         // dd($total_anggaran_sebelumnya, $perubahan_anggaran, ($total_anggaran_barjas_admin + $perubahan_anggaran));
 
-        // Validasi anggaran
-        if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
-            return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
-        }
+
 
         // Validasi input
         $validatedData = $request->validate([
@@ -351,7 +341,6 @@ class ValidasiRkbuBarjasRka extends Controller
 
 
         $data_sebelum = $validasiRkbuBarjasKsp->toArray();
-        // dd($data_sebelum);
 
         // Pastikan data ditemukan sebelum update
         if (!$validasiRkbuBarjasKsp) {
@@ -425,7 +414,6 @@ class ValidasiRkbuBarjasRka extends Controller
             'penempatan'                  => $request->input('penempatan'),
             'sisa_vol_rkbu'               => $jumlahVol,
             'sisa_anggaran_rkbu'          => $totalAnggaran,
-            // Field tambahan yang diminta
             'stok'                        => $request->input('stok'),
             'rata_rata_pemakaian'         => $request->input('rata_rata_pemakaian'),
             'kebutuhan_per_bulan'         => $request->input('kebutuhan_per_bulan'),
@@ -461,7 +449,7 @@ class ValidasiRkbuBarjasRka extends Controller
         ];
 
         // Periksa nilai fase_tahun
-        if ($faseTahun === 'Penetapan') {
+        if (!in_array($faseTahun, ['Perencanaan', 'Perubahan'])) {
             RkbuHistory::create([
                 'id_rkbu'                   => $validasiRkbuBarjasKsp->id_rkbu,
                 'id_jenis_kategori_rkbu'    => '9cdfd354-e43a-4461-9747-e15fb74038ac',
@@ -471,6 +459,11 @@ class ValidasiRkbuBarjasRka extends Controller
                 'keterangan_status'         => $request->input('keterangan_status'),
                 'upload_file_5'             => $namaFile6 ?? null,
             ]);
+
+            // Validasi anggaran
+            if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
+                return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
+            }
         }
 
         if (isset($upload_file_1)) {

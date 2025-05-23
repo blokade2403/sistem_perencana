@@ -29,7 +29,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KertasKerjaApbd;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RkbuEksportUser;
-use App\Http\Controllers\DeployController;
 use App\Http\Controllers\MasterSpjEksport;
 use App\Http\Controllers\RkbuEksportAdmin;
 use App\Http\Controllers\RkbuEksportKabag;
@@ -720,4 +719,3 @@ Route::get('login', function () {
 })->name('login');
 Route::get('/barang_assets/details/{id}', [AssetController::class, 'show'])->name('barang_assets.details');
 Route::get('/reklas_arbs/details/{id}', [ReklasArb::class, 'show'])->name('reklas_arbs.details');
-Route::post('/deploy', [DeployController::class, 'index'])->name('deploy');

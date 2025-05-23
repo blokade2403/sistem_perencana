@@ -1,0 +1,1 @@
+{{dd($obj->id_status_validasi)}}

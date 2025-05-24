@@ -230,10 +230,59 @@ class ValidasiControllerBarangjasaAdmin extends Controller
         }
 
         // Ambil data dari session
-        $id_user = session('id_user');
-        $nama_tahun_anggaran = session('tahun_anggaran');
-        $nama_fase = session('nama_fase');
+        $id_user                = session('id_user');
+        $nama_tahun_anggaran    = session('tahun_anggaran');
+        $tahunAnggaran          = Session::get('tahun_anggaran');
+        $nama_fase              = session('nama_fase');
+        $faseTahun              = TahunAnggaran::where('nama_tahun_anggaran', $tahunAnggaran)->value('fase_tahun');
 
+        $idKodeRekeningBelanja_blud = '9cf603bb-bfd0-4b1e-8a24-7339459d9507';
+        $idSumberDana = '9cdfcedb-cc19-4b65-b889-4a5e2dc0ebe3';
+
+        $jumlah_anggaran = Anggaran::where('id_kode_rekening_belanja', $idKodeRekeningBelanja_blud)
+            ->where('id_sumber_dana', $idSumberDana)
+            ->where('tahun_anggaran', $tahunAnggaran)
+            ->value('jumlah_anggaran') ?? 0;
+
+        $total_anggaran_barjas_admin  = Rkbu::where('nama_tahun_anggaran', $tahunAnggaran)
+            ->where('id_kode_rekening_belanja', $idKodeRekeningBelanja_blud)
+            ->where('id_status_validasi_rka', '9cfb1f87-238b-4ea2-98f0-4255e578b1d1')
+            ->sum('total_anggaran');
+
+        // Temukan data berdasarkan ID
+        $validasiRkbuBarjasKsp = RkbuBarangJasa::find($id);
+
+        if (!$validasiRkbuBarjasKsp) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+        // Ambil nilai total anggaran sebelumnya
+        $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+        $sisa_anggaran_sebelumnya = $validasiRkbuBarjasKsp->sisa_anggaran_rkbu;
+
+        // Hitung total anggaran baru
+        $vol_1 = $request->input('vol_1');
+        $vol_2 = $request->input('vol_2', 1);
+        $harga_satuan = (int) str_replace('.', '', $request->input('harga_satuan'));
+        $ppn = $request->input('ppn', 0);
+
+        $jumlahVol = $vol_1 * $vol_2;
+        $total_anggaran = ($jumlahVol * $harga_satuan) + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+        // Hitung perubahan anggaran (selisih)
+        $perubahan_anggaran = $total_anggaran - $total_anggaran_sebelumnya;
+
+        // Cek perubahan status id_status_validasi_rka
+        $new_status_validasi_rka = $request->input('id_status_validasi_rka');
+        $old_status_validasi_rka = $validasiRkbuBarjasKsp->id_status_validasi_rka;
+
+        if ($new_status_validasi_rka === '9cfb1f87-238b-4ea2-98f0-4255e578b1d1' && $old_status_validasi_rka !== '9cfb1f87-238b-4ea2-98f0-4255e578b1d1') {
+            // Status berubah menjadi '9cfb1f87-238b-4ea2-98f0-4255e578b1d1', tambahkan anggaran
+            $perubahan_anggaran += $total_anggaran_sebelumnya;
+        } elseif ($new_status_validasi_rka !== '9cfb1f87-238b-4ea2-98f0-4255e578b1d1' && $old_status_validasi_rka === '9cfb1f87-238b-4ea2-98f0-4255e578b1d1') {
+            // Status berubah dari '9cfb1f87-238b-4ea2-98f0-4255e578b1d1', kurangi anggaran
+            $perubahan_anggaran -= $total_anggaran_sebelumnya;
+        }
 
         // Validasi input
         $validatedData = $request->validate([
@@ -258,8 +307,6 @@ class ValidasiControllerBarangjasaAdmin extends Controller
             'upload_file_4'                 => 'nullable|mimes:pdf',
         ]);
 
-        // Temukan data berdasarkan ID
-        $validasiRkbuBarjasKsp = RkbuBarangJasa::find($id);
         $data_sebelum = $validasiRkbuBarjasKsp->toArray();
         // dd($data_sebelum);
 
@@ -268,7 +315,6 @@ class ValidasiControllerBarangjasaAdmin extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
 
-        // Mengatur file upload hanya jika file ada
         // Mengatur file upload hanya jika file ada
         $validasiRkbuBarjasKsp->upload_file_1 = $request->hasFile('upload_file_1') ? $request->file('upload_file_1')->store('public/uploads') : $validasiRkbuBarjasKsp->upload_file_1;
         $validasiRkbuBarjasKsp->upload_file_2 = $request->hasFile('upload_file_2') ? $request->file('upload_file_2')->store('public/uploads') : $validasiRkbuBarjasKsp->upload_file_2;
@@ -375,7 +421,7 @@ class ValidasiControllerBarangjasaAdmin extends Controller
             'created_at'                  => now(),
         ];
 
-        if ($nama_fase === 'Penetapan') {
+        if (!in_array($faseTahun, ['Perencanaan', 'Perubahan'])) {
             RkbuHistory::create([
                 'id_rkbu'                   => $validasiRkbuBarjasKsp->id_rkbu,
                 'id_jenis_kategori_rkbu'    => '9cdfd354-e43a-4461-9747-e15fb74038ac',
@@ -385,6 +431,39 @@ class ValidasiControllerBarangjasaAdmin extends Controller
                 'keterangan_status'         => $request->input('keterangan_status'),
                 'upload_file_history'       => $namaFile6 ?? null,
             ]);
+
+            // Validasi anggaran
+            $toleransi = 0.5;
+            $totalSetelahUpdate = $total_anggaran_barjas_admin + $perubahan_anggaran;
+            // dd($totalSetelahUpdate - $jumlah_anggaran, $toleransi);
+
+            // Jika melebihi jumlah anggaran lebih dari toleransi, tolak
+            if ($totalSetelahUpdate - $jumlah_anggaran > $toleransi) {
+                return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
+            }
+            /* ---------------------------- */
+            $id_rkbu = $validasiRkbuBarjasKsp->id_rkbu;
+            $totalAnggaranUsulan = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            $total_anggaran_usulan_baru = $jumlahVol * $harga_satuan + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+            // Ambil total anggaran usulan lama
+            $totalAnggaranLama = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            // Hitung sisa anggaran RKBU setelah penambahan usulan baru
+            $sisa_anggaran_baru = round($total_anggaran_usulan_baru - $totalAnggaranLama, 2);
+            // // dd($total_anggaran_usulan_baru, $totalAnggaranLama, $sisa_anggaran_sebelumnya, $total_anggaran_sebelumnya);
+
+            // Jika sisa anggaran < -0.5, jangan simpan dan beri alert
+            if ($sisa_anggaran_baru < -0.5) {
+                return redirect()->back()->with('error', 'Sisa anggaran tidak mencukupi! Pagu anggaran akan menjadi minus.');
+            }
+
+            /* ---------------------------- */
         }
 
         if (isset($upload_file_1)) {

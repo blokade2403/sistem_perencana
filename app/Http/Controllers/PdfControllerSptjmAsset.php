@@ -115,7 +115,7 @@ class PdfControllerSptjmAsset extends Controller
                <h4 style="font-weight: normal; font-size:11px;">' . $judulHeaders->header1 . '</h4>
                <h5 style="font-weight: bold; font-size:12px; line-height:0;">' . $judulHeaders->header4 . '</h5>
                <h5 style="font-weight: bold; font-size:12px; line-height:1;">' . $judulHeaders->nama_rs . '</h5>
-                    <h3 style="font-weight: normal; font-size:11px; line-height:0;" align="center">Jalan Madya Kebantenan Nomor 4, Cilincing. Telepon : 021-441 2889 </h3>
+                    <h3 style="font-weight: normal; font-size:11px; line-height:0;" align="center">' . $judulHeaders->alamat_rs . '. Telepon : ' . $judulHeaders->tlp_rs . ' </h3>
                     <h3 style="font-weight: normal; font-size:11px; line-height:1;" align="center">Telp. ' . $judulHeaders->tlp_rs . ' Faksimile. ' . $judulHeaders->tlp_rs . '  </h3>
                     <h3 style="font-weight: normal; font-size:11px; line-height:0;" align="center">' . $judulHeaders->header3 . '</h3>
                     <h3 style="font-weight: normal; font-size:11px; line-height:1;" align="center">' . $judulHeaders->wilayah . '</h3>

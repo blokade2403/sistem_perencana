@@ -39,7 +39,7 @@
                                             <div class="input-group input-group-merge">
                                                 <div class="form-floating form-floating-outline">
                                                     <select name="fase_tahun" class="select2 form-select form-select-lg" data-allow-clear="true">
-                                                        <option data-display="Select">Please select</option>
+                                                        <option value="{{$TahunAnggaran->fase_tahun}}">{{$TahunAnggaran->fase_tahun}}</option>
                                                             <option value="Perencanaan">Perencanaan</option>   
                                                             <option value="Penetapan">Penetapan</option>   
                                                             <option value="Perubahan">Perubahan</option>   

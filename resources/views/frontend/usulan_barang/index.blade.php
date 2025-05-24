@@ -134,7 +134,7 @@
                                                     </button>
                                                 </form>
                                                 @else
-                                                <a href="#" class="btn btn-icon btn-outline-danger waves-effect disabled-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus Terlebih dahulu Datanya Detailnya">
+                                                <a href="#" class="btn btn-icon btn-outline-danger waves-effect disabled-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus Terlebih dahulu Data Detailnya">
                                                     <i class="tf-icons mdi mdi-delete-alert-outline"></i>
                                                 </a>
                                             @endif
@@ -160,8 +160,6 @@
         </div>
     </div>
 </div>
-        
-
         @include('frontend.partials.modal_usulan_barang_sub_kategori')
     <!-- Form with Image horizontal Modal -->
     @endsection

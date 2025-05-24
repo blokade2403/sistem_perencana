@@ -130,7 +130,6 @@
                                             </span>
                                         </strong><br />
                                         <span class="fa-xs">Spesifikasi : {{$rkbus->spek}}</span><br />
-                                        <small><span class="fs-12">Catatan : {{$rkbus->nama_barang}}</span></small><br /><br />
                                         <small><span class="fa-sm">Penempatan : {{$rkbus->penempatan}}</span></small><br /><br />
                                         <small><span class="badge bg-label-warning">{{$rkbus->nama_tahun_anggaran}}</span></small><br />
 
@@ -161,7 +160,12 @@
                                         <span class="fa-sm">{{$rkbus->rating}}</span><br />
                                         <span class="fa-sm">TA : {{$rkbus->nama_tahun_anggaran}}</span><br />
                                         <span class="fa-sm">{{$rkbus->created_at}}</span><br />
-                                        <span class="fa-sm">link e-kat: <a href="{{$rkbus->link_ekatalog}}"> {{$rkbus->link_ekatalog}}</a></span>
+                                        <span class="fa-sm">link e-kat:  
+                                            @if(strlen($rkbus->link_ekatalog) <= 3)
+                                                {{ $rkbus->link_ekatalog }}
+                                            @else
+                                                <a href="{{ $rkbus->link_ekatalog }}"><span class="badge bg-primary">Lihat Link e-katalog</span></a>
+                                            @endif</span>
                                         <br />
                                         <br />
                                         @if (!empty($rkbus->upload_file_1))

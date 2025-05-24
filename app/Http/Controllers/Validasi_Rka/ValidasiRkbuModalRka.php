@@ -144,23 +144,9 @@ class ValidasiRkbuModalRka extends Controller
         );
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(string $id)
-    {
-        //
-    }
+    public function create() {}
+    public function store(Request $request) {}
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
@@ -171,6 +157,12 @@ class ValidasiRkbuModalRka extends Controller
             'rekening_belanjas.aktivitas.sub_kegiatan.kegiatan.program',
             'status_validasi_rka' // Memastikan relasi status_validasi juga dipanggil
         ])->findOrFail($id);
+
+        $validasiRkbuBarjasKsp = RkbuBarangJasa::find($id);
+
+        // Ambil nilai total anggaran sebelumnya
+        $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+        $sisa_anggaran_sebelumnya = $validasiRkbuBarjasKsp->sisa_anggaran_rkbu;
 
         $komponens              = Komponen::all();
         $sub_kategori_rkbus     = SubKategoriRkbu::join('kategori_rkbus', 'sub_kategori_rkbus.id_kategori_rkbu', '=', 'kategori_rkbus.id_kategori_rkbu')
@@ -183,7 +175,7 @@ class ValidasiRkbuModalRka extends Controller
         $uraian_dua                 = UraianDua::all();
         $status_validasi_rka        = StatusValidasiRka::all();
 
-        return view('frontend.validasi_rka.modal.edit', compact('rkbuBarangJasa', 'faseTahun', 'status_validasi_rka', 'komponens', 'sub_kategori_rkbus', 'uraian_satu', 'uraian_dua'));
+        return view('frontend.validasi_rka.modal.edit', compact('rkbuBarangJasa', 'total_anggaran_sebelumnya', 'sisa_anggaran_sebelumnya', 'faseTahun', 'status_validasi_rka', 'komponens', 'sub_kategori_rkbus', 'uraian_satu', 'uraian_dua'));
     }
 
 
@@ -226,6 +218,7 @@ class ValidasiRkbuModalRka extends Controller
 
         // Ambil nilai total anggaran sebelumnya
         $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+        $sisa_anggaran_sebelumnya = $validasiRkbuBarjasKsp->sisa_anggaran_rkbu;
 
         // Hitung total anggaran baru
         $vol_1 = $request->input('vol_1');
@@ -251,10 +244,6 @@ class ValidasiRkbuModalRka extends Controller
             $perubahan_anggaran -= $total_anggaran_sebelumnya;
         }
 
-        // dd($total_anggaran_sebelumnya, $perubahan_anggaran, ($total_anggaran_barjas_admin + $perubahan_anggaran));
-
-
-
         // Validasi input
         $validatedData = $request->validate([
             'id_sub_kategori_rkbu'          => 'required',
@@ -278,8 +267,6 @@ class ValidasiRkbuModalRka extends Controller
             'upload_file_4'                 => 'nullable|mimes:pdf',
         ]);
 
-        // Temukan data berdasarkan ID
-        // $validasiRkbuBarjasKsp = RkbuBarangJasa::find($id);
         $data_sebelum = $validasiRkbuBarjasKsp->toArray();
         // dd($data_sebelum);
 
@@ -390,6 +377,11 @@ class ValidasiRkbuModalRka extends Controller
             'created_at'                  => now(),
         ];
 
+        $id_jenis_kategori_alkes = [
+            '9cf70e31-9b9e-4dea-8b39-5459f23f3f51',
+            '9cf70e1d-18e7-40fe-bdd3-b7dabf61877d',
+            '9cf70e44-a25e-462e-8bce-6fd930a91c0b',
+        ];
 
         if (!in_array($faseTahun, ['Perencanaan', 'Perubahan'])) {
             RkbuHistory::create([
@@ -402,10 +394,37 @@ class ValidasiRkbuModalRka extends Controller
                 'upload_file_5'             => $namaFile6 ?? null,
             ]);
 
-            // Validasi anggaran
-            if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
+            $toleransi = 0.5;
+            $totalSetelahUpdate = $total_anggaran_barjas_admin + $perubahan_anggaran;
+
+            // Jika melebihi jumlah anggaran lebih dari toleransi, tolak
+            if ($totalSetelahUpdate - $jumlah_anggaran > $toleransi) {
                 return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
             }
+
+            /* ---------------------------- */
+            $id_rkbu = $validasiRkbuBarjasKsp->id_rkbu;
+            $totalAnggaranUsulan = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            $total_anggaran_usulan_baru = $jumlahVol * $harga_satuan + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+            // Ambil total anggaran usulan lama
+            $totalAnggaranLama = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            // Hitung sisa anggaran RKBU setelah penambahan usulan baru
+            $sisa_anggaran_baru = round($total_anggaran_usulan_baru - $totalAnggaranLama, 2);
+            // // dd($total_anggaran_usulan_baru, $totalAnggaranLama, $sisa_anggaran_sebelumnya, $total_anggaran_sebelumnya);
+
+            // Jika sisa anggaran < -0.5, jangan simpan dan beri alert
+            if ($sisa_anggaran_baru < -0.5) {
+                return redirect()->back()->with('error', 'Sisa anggaran tidak mencukupi! Pagu anggaran akan menjadi minus.');
+            }
+
+            /* ---------------------------- */
         }
 
         if (isset($upload_file_1)) {

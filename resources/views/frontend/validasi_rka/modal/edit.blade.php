@@ -217,12 +217,6 @@
                                         <div class="accordion mt-3" id="accordionWithIcon">
                                             <span id="nama_kategori_rekening"></span><br>
                                             <span id="nama_sub_kategori_rekening"></span><br>
-                                            {{-- <span id="nama_aktivitas"></span><br> --}}
-                                            {{-- <span id="nama_program"></span><br>
-                                            <span id="nama_kegiatan"></span><br>
-                                            <span id="nama_sub_kegiatan"></span><br>
-                                            <span id="nama_jenis_belanja"></span><br>
-                                            <span id="nama_kategori_rkbu"></span><br> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +229,10 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating form-floating-outline">
-                                        <select name="id_status_validasi_rka" class="select2 form-select form-select-lg" data-allow-clear="true">
+                                         @if ($total_anggaran_sebelumnya != $sisa_anggaran_sebelumnya)
+                                            <input type="hidden" name="id_status_validasi_rka" value="{{ $rkbuBarangJasa->id_status_validasi_rka }}">
+                                        @endif
+                                        <select name="id_status_validasi_rka" class="select2 form-select form-select-lg" data-allow-clear="true" {{ $total_anggaran_sebelumnya != $sisa_anggaran_sebelumnya ? 'disabled' : '' }}>
                                             <option value="{{ $rkbuBarangJasa->id_status_validasi_rka }}">
                                                 {{ $rkbuBarangJasa->status_validasi_rka->nama_validasi_rka }}
                                             </option>

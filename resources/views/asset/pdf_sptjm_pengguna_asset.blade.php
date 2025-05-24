@@ -201,7 +201,7 @@
         </tr>
          <tr>
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 0; text-align: center;" class="no-border" width="20%"></td>
-            <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 0; text-align: center;" class="no-border" width="60%">Direktur Rumah Sakit Umum Daerah Cilincing</td>
+            <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 0; text-align: center;" class="no-border" width="60%">Direktur {{ ucwords(strtolower($judulHeaders->nama_rs)) }}</td>
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 0; text-align: left;" class="no-border" width="10%"></td>
             <td style="font-weight: normal; margin-left: 50px; font-size: 11px; line-height: 0; text-align: center; text:wrap" class="no-border" width="20%"></td>
         </tr>

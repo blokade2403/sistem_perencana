@@ -21,9 +21,7 @@ use Illuminate\Support\Facades\Session;
 
 class ValidasiRkbuBarjasRka extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         // Ambil id_ksp dari session
@@ -156,24 +154,9 @@ class ValidasiRkbuBarjasRka extends Controller
         );
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(string $id)
-    {
-        //
-    }
-
+    public function create() {}
+    public function store(Request $request) {}
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
@@ -185,7 +168,11 @@ class ValidasiRkbuBarjasRka extends Controller
             'status_validasi_rka' // Memastikan relasi status_validasi juga dipanggil
         ])->findOrFail($id);
 
-        // dd($existsInUsulanBarangDetail);
+        $validasiRkbuBarjasKsp = RkbuBarangJasa::find($id);
+
+        // Ambil nilai total anggaran sebelumnya
+        $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+        $sisa_anggaran_sebelumnya = $validasiRkbuBarjasKsp->sisa_anggaran_rkbu;
 
         $komponens              = Komponen::all();
         $sub_kategori_rkbus     = SubKategoriRkbu::join('kategori_rkbus', 'sub_kategori_rkbus.id_kategori_rkbu', '=', 'kategori_rkbus.id_kategori_rkbu')
@@ -198,7 +185,7 @@ class ValidasiRkbuBarjasRka extends Controller
         $uraian_dua                 = UraianDua::all();
         $status_validasi_rka        = StatusValidasiRka::all();
 
-        return view('frontend.validasi_rka.barang_jasa.edit', compact('rkbuBarangJasa', 'faseTahun', 'status_validasi_rka', 'komponens', 'sub_kategori_rkbus', 'uraian_satu', 'uraian_dua'));
+        return view('frontend.validasi_rka.barang_jasa.edit', compact('rkbuBarangJasa', 'total_anggaran_sebelumnya', 'sisa_anggaran_sebelumnya', 'faseTahun', 'status_validasi_rka', 'komponens', 'sub_kategori_rkbus', 'uraian_satu', 'uraian_dua'));
     }
 
     public function massValidasi(Request $request)
@@ -245,7 +232,6 @@ class ValidasiRkbuBarjasRka extends Controller
         return redirect()->back()->with('success', 'Validasi berhasil diperbarui.');
     }
 
-
     public function update(Request $request, $id)
     {
 
@@ -260,7 +246,6 @@ class ValidasiRkbuBarjasRka extends Controller
         $nama_fase              = session('nama_fase');
         $tahunAnggaran          = Session::get('tahun_anggaran');
         $currentJenisKategori   = $request->input('jenis_kategori_rkbu', '9cdfd354-e43a-4461-9747-e15fb74038ac');
-        $tahunAnggaran          = Session::get('tahun_anggaran');
         $id_pejabat             = session('id_pejabat');
         $faseTahun              = TahunAnggaran::where('nama_tahun_anggaran', $tahunAnggaran)->value('fase_tahun');
 
@@ -287,6 +272,7 @@ class ValidasiRkbuBarjasRka extends Controller
 
         // Ambil nilai total anggaran sebelumnya
         $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+        $sisa_anggaran_sebelumnya = $validasiRkbuBarjasKsp->sisa_anggaran_rkbu;
 
         // Hitung total anggaran baru
         $vol_1 = $request->input('vol_1');
@@ -312,10 +298,6 @@ class ValidasiRkbuBarjasRka extends Controller
             $perubahan_anggaran -= $total_anggaran_sebelumnya;
         }
 
-        // dd($total_anggaran_sebelumnya, $perubahan_anggaran, ($total_anggaran_barjas_admin + $perubahan_anggaran));
-
-
-
         // Validasi input
         $validatedData = $request->validate([
             'id_sub_kategori_rkbu'          => 'required',
@@ -338,7 +320,6 @@ class ValidasiRkbuBarjasRka extends Controller
             'upload_file_3'                 => 'nullable|mimes:pdf',
             'upload_file_4'                 => 'nullable|mimes:pdf',
         ]);
-
 
         $data_sebelum = $validasiRkbuBarjasKsp->toArray();
 
@@ -461,9 +442,38 @@ class ValidasiRkbuBarjasRka extends Controller
             ]);
 
             // Validasi anggaran
-            if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
+            $toleransi = 0.5;
+            $totalSetelahUpdate = $total_anggaran_barjas_admin + $perubahan_anggaran;
+            // dd($totalSetelahUpdate - $jumlah_anggaran, $toleransi);
+
+            // Jika melebihi jumlah anggaran lebih dari toleransi, tolak
+            if ($totalSetelahUpdate - $jumlah_anggaran > $toleransi) {
                 return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
             }
+
+            /* ---------------------------- */
+            $id_rkbu = $validasiRkbuBarjasKsp->id_rkbu;
+            $totalAnggaranUsulan = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            $total_anggaran_usulan_baru = $jumlahVol * $harga_satuan + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+            // Ambil total anggaran usulan lama
+            $totalAnggaranLama = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            // Hitung sisa anggaran RKBU setelah penambahan usulan baru
+            $sisa_anggaran_baru = round($total_anggaran_usulan_baru - $totalAnggaranLama, 2);
+            // // dd($total_anggaran_usulan_baru, $totalAnggaranLama, $sisa_anggaran_sebelumnya, $total_anggaran_sebelumnya);
+
+            // Jika sisa anggaran < -0.5, jangan simpan dan beri alert
+            if ($sisa_anggaran_baru < -0.5) {
+                return redirect()->back()->with('error', 'Sisa anggaran tidak mencukupi! Pagu anggaran akan menjadi minus.');
+            }
+
+            /* ---------------------------- */
         }
 
         if (isset($upload_file_1)) {

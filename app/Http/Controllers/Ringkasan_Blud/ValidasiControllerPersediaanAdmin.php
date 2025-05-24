@@ -25,131 +25,6 @@ use App\DataTables\ValidasiControllerPersediaanAdminDataTable;
 class ValidasiControllerPersediaanAdmin extends Controller
 {
 
-    // public function index(Request $request)
-    // {
-    //     // Ambil id_ksp dari session
-    //     $id_pejabat          = session('id_pejabat');
-    //     $id_user             = session('id_user');
-    //     $tahunAnggaran       = Session::get('tahun_anggaran');
-    //     $status_validasi_rka = StatusValidasiRka::all(); // Ambil status validasi dari model terkait
-
-    //     $sumber_dana    = [
-    //         '9cdfcedb-cc19-4b65-b889-4a5e2dc0ebe3', // BLUD
-    //         '9cdfced0-87ce-49dc-8268-25ed56420bf7', // APBD
-    //         '9cf6ed93-0b31-4941-a31a-82d07eb81873' // DAK
-    //     ];
-
-    //     $id_kode_rekening_belanja_non_barjas_non_blud = [
-    //         '9cf60434-5a17-4cb0-9114-1ca4b138c01e',
-    //         '9cf60466-6250-4911-809c-e55ce54880b9',
-    //         '9cf6048a-fa04-40ec-b310-c03d12b2b760',
-    //     ];
-
-    //     $id_kode_rekening_belanja_barjas_non_blud = [
-    //         '9cf60336-8954-46af-8d7d-dd32dd46b8a1',
-    //         '9cf60308-4f19-4180-a2f1-87f7ed723add',
-    //         '9cf6025b-eb56-4d10-9e00-17e74056b7f5',
-    //     ];
-
-    //     $idKodeRekeningBelanja_blud  = '9cf603bb-bfd0-4b1e-8a24-7339459d9507';
-    //     $idSumberDana           = '9cdfcedb-cc19-4b65-b889-4a5e2dc0ebe3';
-
-    //     $anggaran = Anggaran::where('id_kode_rekening_belanja', $idKodeRekeningBelanja_blud)
-    //         ->where('id_sumber_dana', $idSumberDana)
-    //         ->where('tahun_anggaran', $tahunAnggaran)
-    //         ->select('jumlah_anggaran')
-    //         ->first();
-
-    //     $jumlah_anggaran = $anggaran ? $anggaran->jumlah_anggaran : 0;
-
-    //     $query_admin = function ($id_kode_rekening_belanja) use ($tahunAnggaran, $sumber_dana) {
-    //         return Rkbu::join('users', 'rkbus.id_user', '=', 'users.id_user')
-    //             ->join('pejabats', 'users.id_pejabat', '=', 'pejabats.id_pejabat')
-    //             ->join('rekening_belanjas', 'rekening_belanjas.id_kode_rekening_belanja', '=', 'rkbus.id_kode_rekening_belanja')
-    //             ->join('aktivitas', 'aktivitas.id_aktivitas', '=', 'rekening_belanjas.id_aktivitas')
-    //             ->join('sub_kegiatans', 'sub_kegiatans.id_sub_kegiatan', '=', 'aktivitas.id_sub_kegiatan')
-    //             ->join('sumber_danas', 'sumber_danas.id_sumber_dana', '=', 'sub_kegiatans.id_sumber_dana')
-    //             ->whereIn('sumber_danas.id_sumber_dana', $sumber_dana)
-    //             ->where('rkbus.nama_tahun_anggaran', $tahunAnggaran)
-    //             ->where('rkbus.id_kode_rekening_belanja', $id_kode_rekening_belanja)
-    //             ->where('id_status_validasi_rka', '9cfb1f87-238b-4ea2-98f0-4255e578b1d1')
-    //             ->sum('total_anggaran');
-    //     };
-
-    //     $total_anggaran_pegawai_admin  = $query_admin('9cf6040a-2759-4d16-a3cf-3eee5194a2d5');
-    //     $total_anggaran_modal_admin  = $query_admin('9cf603e2-e748-49f0-949f-6c3c30d42c3e');
-    //     $total_anggaran_barjas_admin = $query_admin($idKodeRekeningBelanja_blud);
-    //     $total_anggaran_admin = $total_anggaran_pegawai_admin + $total_anggaran_modal_admin + $total_anggaran_barjas_admin;
-
-    //     $selisih = $jumlah_anggaran - $total_anggaran_barjas_admin;
-
-    //     // dd($selisih);
-
-    //     $currentJenisKategori = $request->input('jenis_kategori_rkbu', '9cdfd364-2946-4ea1-bec2-e1130e8d9f2c');
-
-    //     // Ambil sub kategori rkbu berdasarkan id_user dari session dan id_jenis_kategori_rkbu
-    //     $sub_kategori_rkbus = SubKategoriRkbu::join('rkbus', 'rkbus.id_sub_kategori_rkbu', '=', 'sub_kategori_rkbus.id_sub_kategori_rkbu')
-    //         ->join('kategori_rkbus', 'sub_kategori_rkbus.id_kategori_rkbu', '=', 'kategori_rkbus.id_kategori_rkbu')
-    //         ->join('jenis_kategori_rkbus', 'kategori_rkbus.id_jenis_kategori_rkbu', '=', 'jenis_kategori_rkbus.id_jenis_kategori_rkbu')
-    //         ->join('users', 'rkbus.id_user', '=', 'users.id_user')
-    //         // ->join('ksps', 'users.id_ksp', '=', 'ksps.id_ksp')
-    //         // ->join('pejabats', 'users.id_pejabat', '=', 'pejabats.id_pejabat')
-    //         // ->where('pejabats.id_pejabat', $id_pejabat)
-    //         ->where('rkbus.nama_tahun_anggaran', $tahunAnggaran)
-    //         ->where('jenis_kategori_rkbus.id_jenis_kategori_rkbu',  $currentJenisKategori)
-    //         ->select('sub_kategori_rkbus.*') // Pilih data sub_kategori_rkbu
-    //         ->distinct() // Hilangkan duplikasi
-    //         ->get();
-
-    //     // Query untuk mengambil data rkbu
-    //     $query = Rkbu::join('users', 'rkbus.id_user', '=', 'users.id_user')
-    //         ->join('ksps', 'users.id_ksp', '=', 'ksps.id_ksp')
-    //         ->join('sub_kategori_rkbus', 'rkbus.id_sub_kategori_rkbu', '=', 'sub_kategori_rkbus.id_sub_kategori_rkbu')
-    //         ->join('kategori_rkbus', 'sub_kategori_rkbus.id_kategori_rkbu', '=', 'kategori_rkbus.id_kategori_rkbu')
-    //         ->join('jenis_kategori_rkbus', 'kategori_rkbus.id_jenis_kategori_rkbu', '=', 'jenis_kategori_rkbus.id_jenis_kategori_rkbu')
-    //         // ->join('pejabats', 'users.id_pejabat', '=', 'pejabats.id_pejabat')
-    //         // ->where('pejabats.id_pejabat', $id_pejabat)
-    //         //->where('id_status_validasi', '9cfb1edc-2263-401f-b249-361db4017932')
-    //         ->where('rkbus.nama_tahun_anggaran', $tahunAnggaran)
-    //         ->where('jenis_kategori_rkbus.id_jenis_kategori_rkbu',  $currentJenisKategori);
-
-    //     $nama_tahun_anggaran = session('tahun_anggaran');
-    //     $angka_tahun = (int) preg_replace('/[^0-9]/', '', $nama_tahun_anggaran);
-
-    //     $angka_kurang_2   = $angka_tahun - 2;
-    //     $angka_kurang_1   = $angka_tahun - 1;
-
-    //     // Cek apakah ada filter sub_kategori_rkbu yang dipilih
-    //     if ($request->filled('sub_kategori_rkbu')) {
-    //         $query->where('rkbus.id_sub_kategori_rkbu', $request->sub_kategori_rkbu);
-    //     }
-
-    //     // Filter berdasarkan id_status_validasi_rka
-    //     if ($request->filled('id_status_validasi_rka')) {
-    //         $query->where('rkbus.id_status_validasi_rka', $request->id_status_validasi_rka);
-    //     }
-
-    //     // Dapatkan data rkbu setelah filter
-    //     $rkbus = $query->select('rkbus.*')->get();
-
-    //     // Hitung total anggaran dari data yang diambil
-    //     $total_anggaran = $rkbus->sum('total_anggaran');
-
-    //     return view('frontend.Ringkasan_Blud.persediaan.index', compact(
-    //         'rkbus',
-    //         'total_anggaran',
-    //         'sub_kategori_rkbus',
-    //         'status_validasi_rka',
-    //         'currentJenisKategori',
-    //         'angka_kurang_1',
-    //         'angka_tahun',
-    //         'angka_kurang_2',
-    //         'selisih',
-    //         'jumlah_anggaran',
-    //         'total_anggaran_barjas_admin',
-    //     ));
-    // }
-
     public function index(ValidasiControllerPersediaanAdminDataTable $dataTable, Request $request)
     {
         $id_pejabat          = session('id_pejabat');
@@ -251,23 +126,9 @@ class ValidasiControllerPersediaanAdmin extends Controller
         ]);
     }
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(string $id)
-    {
-        //
-    }
-
+    public function create() {}
+    public function store(Request $request) {}
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
@@ -360,10 +221,58 @@ class ValidasiControllerPersediaanAdmin extends Controller
         }
 
         // Ambil data dari session
-        $id_user = session('id_user');
-        $nama_tahun_anggaran = session('tahun_anggaran');
-        $nama_fase = session('nama_fase');
+        $id_user                = session('id_user');
+        $nama_tahun_anggaran    = session('tahun_anggaran');
+        $nama_fase              = session('nama_fase');
+        $tahunAnggaran          = Session::get('tahun_anggaran');
+        $nama_fase              = session('nama_fase');
+        $faseTahun              = TahunAnggaran::where('nama_tahun_anggaran', $tahunAnggaran)->value('fase_tahun');
 
+        $idKodeRekeningBelanja_blud = '9cf603bb-bfd0-4b1e-8a24-7339459d9507';
+        $idSumberDana = '9cdfcedb-cc19-4b65-b889-4a5e2dc0ebe3';
+
+        $jumlah_anggaran = Anggaran::where('id_kode_rekening_belanja', $idKodeRekeningBelanja_blud)
+            ->where('id_sumber_dana', $idSumberDana)
+            ->where('tahun_anggaran', $tahunAnggaran)
+            ->value('jumlah_anggaran') ?? 0;
+
+        $total_anggaran_barjas_admin  = Rkbu::where('nama_tahun_anggaran', $tahunAnggaran)
+            ->where('id_kode_rekening_belanja', $idKodeRekeningBelanja_blud)
+            ->where('id_status_validasi_rka', '9cfb1f87-238b-4ea2-98f0-4255e578b1d1')
+            ->sum('total_anggaran');
+
+        // Temukan data berdasarkan ID
+        $validasiRkbuBarjasKsp = RkbuPersediaan::find($id);
+
+        if (!$validasiRkbuBarjasKsp) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+        // Ambil nilai total anggaran sebelumnya
+        $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+
+        // Hitung total anggaran baru
+        $vol_1 = $request->input('rencana_pengadaan_tahun_x1');
+        $harga_satuan = (int) str_replace('.', '', $request->input('harga_satuan'));
+        $ppn = $request->input('ppn', 0);
+
+        $jumlahVol = $vol_1;
+        $total_anggaran = ($jumlahVol * $harga_satuan) + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+        // Hitung perubahan anggaran (selisih)
+        $perubahan_anggaran = $total_anggaran - $total_anggaran_sebelumnya;
+
+        // Cek perubahan status id_status_validasi_rka
+        $new_status_validasi_rka = $request->input('id_status_validasi_rka');
+        $old_status_validasi_rka = $validasiRkbuBarjasKsp->id_status_validasi_rka;
+
+        if ($new_status_validasi_rka === '9cfb1f87-238b-4ea2-98f0-4255e578b1d1' && $old_status_validasi_rka !== '9cfb1f87-238b-4ea2-98f0-4255e578b1d1') {
+            // Status berubah menjadi '9cfb1f87-238b-4ea2-98f0-4255e578b1d1', tambahkan anggaran
+            $perubahan_anggaran += $total_anggaran_sebelumnya;
+        } elseif ($new_status_validasi_rka !== '9cfb1f87-238b-4ea2-98f0-4255e578b1d1' && $old_status_validasi_rka === '9cfb1f87-238b-4ea2-98f0-4255e578b1d1') {
+            // Status berubah dari '9cfb1f87-238b-4ea2-98f0-4255e578b1d1', kurangi anggaran
+            $perubahan_anggaran -= $total_anggaran_sebelumnya;
+        }
 
         // Validasi input
         $validatedData = $request->validate([
@@ -515,7 +424,7 @@ class ValidasiControllerPersediaanAdmin extends Controller
             'created_at'                  => now(),
         ];
 
-        if ($nama_fase === 'Penetapan') {
+        if (!in_array($faseTahun, ['Perencanaan', 'Perubahan'])) {
             RkbuHistory::create([
                 'id_rkbu'                   => $validasiRkbuBarjasKsp->id_rkbu,
                 'id_jenis_kategori_rkbu'    => '9cdfd364-2946-4ea1-bec2-e1130e8d9f2c',
@@ -525,6 +434,39 @@ class ValidasiControllerPersediaanAdmin extends Controller
                 'keterangan_status'         => $request->input('keterangan_status'),
                 'upload_file_history'       => $namaFile6 ?? null,
             ]);
+
+            // Validasi anggaran
+            $toleransi = 0.5;
+            $totalSetelahUpdate = $total_anggaran_barjas_admin + $perubahan_anggaran;
+            // dd($totalSetelahUpdate - $jumlah_anggaran, $toleransi);
+
+            // Jika melebihi jumlah anggaran lebih dari toleransi, tolak
+            if ($totalSetelahUpdate - $jumlah_anggaran > $toleransi) {
+                return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
+            }
+
+            /* ---------------------------- */
+            $id_rkbu = $validasiRkbuBarjasKsp->id_rkbu;
+            $totalAnggaranUsulan = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            $total_anggaran_usulan_baru = $jumlahVol * $harga_satuan + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+            // Ambil total anggaran usulan lama
+            $totalAnggaranLama = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            // Hitung sisa anggaran RKBU setelah penambahan usulan baru
+            $sisa_anggaran_baru = round($total_anggaran_usulan_baru - $totalAnggaranLama, 2);
+            // // dd($total_anggaran_usulan_baru, $totalAnggaranLama, $sisa_anggaran_sebelumnya, $total_anggaran_sebelumnya);
+
+            // Jika sisa anggaran < -0.5, jangan simpan dan beri alert
+            if ($sisa_anggaran_baru < -0.5) {
+                return redirect()->back()->with('error', 'Sisa anggaran tidak mencukupi! Pagu anggaran akan menjadi minus.');
+            }
+            /* ---------------------------- */
         }
 
         if (isset($upload_file_1)) {
@@ -540,7 +482,6 @@ class ValidasiControllerPersediaanAdmin extends Controller
             $validasiRkbuBarjasKsp->upload_file_4 = $upload_file_4;
         }
 
-        // dd($validasiRkbuBarjasKsp);
         // Update data
         $validasiRkbuBarjasKsp->save();
 

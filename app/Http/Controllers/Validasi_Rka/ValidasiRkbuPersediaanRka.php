@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Session;
 
 class ValidasiRkbuPersediaanRka extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         // Ambil id_ksp dari session
@@ -146,24 +144,9 @@ class ValidasiRkbuPersediaanRka extends Controller
         ));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(string $id)
-    {
-        //
-    }
-
+    public function create() {}
+    public function store(Request $request) {}
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
@@ -176,6 +159,12 @@ class ValidasiRkbuPersediaanRka extends Controller
         ])->findOrFail($id);
 
         $nama_tahun_anggaran = session('tahun_anggaran');
+
+        $validasiRkbuBarjasKsp = RkbuPersediaan::find($id);
+
+        // Ambil nilai total anggaran sebelumnya
+        $total_anggaran_sebelumnya = $validasiRkbuBarjasKsp->total_anggaran;
+        $sisa_anggaran_sebelumnya = $validasiRkbuBarjasKsp->sisa_anggaran_rkbu;
 
         // Menghilangkan karakter non-digit dan menyisakan hanya angka
         $angka_tahun = (int) preg_replace('/[^0-9]/', '', $nama_tahun_anggaran);
@@ -197,9 +186,8 @@ class ValidasiRkbuPersediaanRka extends Controller
         $uraian_dua                 = UraianDua::all();
         $status_validasi_rka        = StatusValidasiRka::all();
 
-        return view('frontend.validasi_rka.persediaan.edit', compact('rkbuPersediaan', 'faseTahun', 'status_validasi_rka', 'komponens', 'sub_kategori_rkbus', 'uraian_satu', 'uraian_dua', 'id_kode_rekening_belanja', 'angka_tahun', 'angka_kurang_2', 'angka_kurang_1'));
+        return view('frontend.validasi_rka.persediaan.edit', compact('rkbuPersediaan', 'total_anggaran_sebelumnya', 'sisa_anggaran_sebelumnya', 'faseTahun', 'status_validasi_rka', 'komponens', 'sub_kategori_rkbus', 'uraian_satu', 'uraian_dua', 'id_kode_rekening_belanja', 'angka_tahun', 'angka_kurang_2', 'angka_kurang_1'));
     }
-
 
     public function update(Request $request, string $id)
     {
@@ -424,9 +412,37 @@ class ValidasiRkbuPersediaanRka extends Controller
             ]);
 
             // Validasi anggaran
-            if (($total_anggaran_barjas_admin + $perubahan_anggaran) > $jumlah_anggaran) {
+            $toleransi = 0.5;
+            $totalSetelahUpdate = $total_anggaran_barjas_admin + $perubahan_anggaran;
+            // dd($totalSetelahUpdate - $jumlah_anggaran, $toleransi);
+
+            // Jika melebihi jumlah anggaran lebih dari toleransi, tolak
+            if ($totalSetelahUpdate - $jumlah_anggaran > $toleransi) {
                 return redirect()->back()->with('error', 'Tidak bisa Update Anggaran melebihi Pagu.');
             }
+
+            /* ---------------------------- */
+            $id_rkbu = $validasiRkbuBarjasKsp->id_rkbu;
+            $totalAnggaranUsulan = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            $total_anggaran_usulan_baru = $jumlahVol * $harga_satuan + ($ppn / 100 * ($jumlahVol * $harga_satuan));
+
+            // Ambil total anggaran usulan lama
+            $totalAnggaranLama = DB::table('usulan_barang_details')
+                ->where('id_rkbu', $id_rkbu)
+                ->sum('total_anggaran_usulan_barang');
+
+            // Hitung sisa anggaran RKBU setelah penambahan usulan baru
+            $sisa_anggaran_baru = round($total_anggaran_usulan_baru - $totalAnggaranLama, 2);
+            // // dd($total_anggaran_usulan_baru, $totalAnggaranLama, $sisa_anggaran_sebelumnya, $total_anggaran_sebelumnya);
+
+            // Jika sisa anggaran < -0.5, jangan simpan dan beri alert
+            if ($sisa_anggaran_baru < -0.5) {
+                return redirect()->back()->with('error', 'Sisa anggaran tidak mencukupi! Pagu anggaran akan menjadi minus.');
+            }
+            /* ---------------------------- */
         }
 
         if (isset($upload_file_1)) {
